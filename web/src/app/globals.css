@@ -167,44 +167,43 @@ a {
   font-family: var(--font-caveat), cursive;
 }
 
-/* ===== Site navbar — editorial paper / copper ===== */
+/* ===== Site navbar — dark teal, light readable links ===== */
 .site-nav {
   border-color: transparent;
+  background: rgba(10, 33, 30, 0.92);
+  backdrop-filter: blur(12px);
 }
 
-.site-nav--hero {
-  background: rgba(243, 246, 242, 0.82);
-  backdrop-filter: blur(12px);
-  border-color: rgba(220, 229, 223, 0.7);
+.site-nav--hero,
+.site-nav--solid {
+  background: rgba(10, 33, 30, 0.94);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .site-nav--solid {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  border-color: var(--line);
-  box-shadow: 0 8px 24px rgba(15, 44, 40, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .site-nav__brand {
-  color: var(--ink);
+  color: #eef3f0;
 }
 
 .site-nav__link {
-  color: var(--slate);
+  color: #d5e4dd;
   transition: color 0.15s ease;
 }
 
 .site-nav__link:hover {
-  color: var(--copper);
+  color: #ffffff;
 }
 
 .site-nav__lang {
-  background: rgba(15, 44, 40, 0.05);
-  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .site-nav__lang button {
-  color: var(--slate-light);
+  color: #9bb0a6;
   background: transparent;
   border: 0;
   cursor: pointer;
@@ -216,14 +215,14 @@ a {
 }
 
 .site-nav__burger {
-  border: 1px solid var(--line);
-  background: var(--paper-raised);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
 }
 
 .site-nav__burger span,
 .site-nav__burger span::before,
 .site-nav__burger span::after {
-  background: var(--ink);
+  background: #eef3f0;
 }
 
 .site-nav__burger span {
@@ -255,12 +254,13 @@ a {
     flex-direction: column;
     gap: 0;
     padding: 0.5rem 1.5rem 1rem;
-    background: #fff;
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 12px 24px rgba(15, 44, 40, 0.08);
+    background: rgba(10, 33, 30, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
   }
 
   .site-nav__links.is-open .site-nav__link {
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #eef3f0;
   }
 }

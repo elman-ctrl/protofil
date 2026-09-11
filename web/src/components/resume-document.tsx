@@ -4,21 +4,24 @@ import { resumeDocument as r } from '@/lib/resume-content';
 import { useLang } from './lang-provider';
 
 function Mixed({ text }: { text: string }) {
-  const parts = text.split(
-    /(\(?[A-Za-z][A-Za-z0-9+./()_-]*(?:[\s،,·/-]+[A-Za-z][A-Za-z0-9+./()_-]*)*\)?)/g,
-  );
+  const parts = text
+    .split(
+      /(\(?[A-Za-z][A-Za-z0-9+./()_-]*(?:[\s،,·/-]+[A-Za-z][A-Za-z0-9+./()_-]*)*\)?)/g,
+    )
+    .filter((part) => part !== '');
+
   return (
     <>
       {parts.map((part, i) =>
         /[A-Za-z]/.test(part) ? (
-          <span key={i} dir="ltr" className="cv-ltr">
+          <span key={`ltr-${i}`} dir="ltr" className="cv-ltr">
             {part}
           </span>
         ) : (
-          part
+          <span key={`txt-${i}`}>{part}</span>
         ),
       )}
-      {'\u200F'}
+      <span>{'\u200F'}</span>
     </>
   );
 }

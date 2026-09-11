@@ -1,95 +1,101 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useLang } from './lang-provider';
 
-type Repo = {
-  name: string;
-  html_url: string;
-  description: string | null;
-  language: string | null;
-  stargazers_count: number;
-};
+const highlights = [
+  {
+    titleFa: 'پروفایل گیت‌هاب',
+    titleEn: 'GitHub Profile',
+    descFa:
+      'مخزن‌ها، اسکریپت‌ها و مستندات فنی مرتبط با شبکه، لینوکس و DevOps.',
+    descEn:
+      'Repositories, scripts, and technical notes related to networking, Linux, and DevOps.',
+    meta: 'elman-ctrl',
+    href: 'https://github.com/elman-ctrl',
+  },
+  {
+    titleFa: 'مستندسازی فنی',
+    titleEn: 'Technical Documentation',
+    descFa:
+      'راهنماهای مرحله‌به‌مرحله برای MikroTik، VPN و راه‌اندازی سرویس‌های سرور.',
+    descEn:
+      'Step-by-step guides for MikroTik, VPN, and standing up server services.',
+    meta: 'FA / EN',
+    href: '#projects',
+  },
+  {
+    titleFa: 'آزمایشگاه زیرساخت',
+    titleEn: 'Infrastructure Lab',
+    descFa:
+      'محیط‌های تست ایزوله برای تانل، فیل‌اُور، CI/CD و مانیتورینگ قبل از دیپلوی واقعی.',
+    descEn:
+      'Isolated lab setups for tunnels, failover, CI/CD, and monitoring before live deploy.',
+    meta: 'Lab-first',
+    href: '#projects',
+  },
+  {
+    titleFa: 'اتوماسیون و دیپلوی',
+    titleEn: 'Automation & Deploy',
+    descFa:
+      'پایپلاین‌های GitHub Actions، دیپلوی SSH و استک‌های Docker برای سرویس‌های پایدار.',
+    descEn:
+      'GitHub Actions pipelines, SSH deploy, and Docker stacks for reliable services.',
+    meta: 'CI/CD',
+    href: '#skills',
+  },
+];
 
 export function GithubSection() {
   const { t, locale } = useLang();
-  const [repos, setRepos] = useState<Repo[]>([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('https://api.github.com/users/elman-ctrl/repos?sort=updated&per_page=4')
-      .then(async (res) => {
-        if (!res.ok) throw new Error('fail');
-        return res.json();
-      })
-      .then((data: Repo[]) => setRepos(Array.isArray(data) ? data : []))
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
-  }, []);
 
   return (
     <section id="github" className="section">
       <div className="wrap">
-        <div className="eyebrow">{t('گیت‌هاب', 'GitHub')}</div>
+        <div className="eyebrow">{t('کد و مستندات', 'Code & Docs')}</div>
         <h2 className="mb-3 text-[clamp(1.5rem,3vw,1.95rem)] font-extrabold text-ink">
-          {t('فعالیت و مخزن‌های اخیر', 'Activity & Recent Repositories')}
+          {t('کار باز و مسیر فنی', 'Open Work & Technical Path')}
         </h2>
         <p className="mb-8 max-w-2xl text-slate">
           {t(
-            'این بخش مستقیم از API گیت‌هاب من خونده می‌شه.',
-            'This section is pulled live from my GitHub API.',
+            'به‌جای لیست خام مخزن‌ها، اینجا مسیر کاری مرتبط با شبکه و زیرساخت را می‌بینی؛ جزئیات پروژه‌ها در بخش نمونه‌کارهاست.',
+            'Instead of a raw repo dump, this highlights the networking and infrastructure path — full case studies live in Projects.',
           )}
         </p>
 
-        <div className="card mb-4 overflow-x-auto p-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://ghchart.rshah.org/BC7139/elman-ctrl"
-            alt="GitHub contribution graph"
-            className="mx-auto"
-            loading="lazy"
-          />
+        <div className="grid gap-3 sm:grid-cols-2">
+          {highlights.map((item) => (
+            <a
+              key={item.titleEn}
+              href={item.href}
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={
+                item.href.startsWith('http') ? 'noopener noreferrer' : undefined
+              }
+              className="card block p-5 transition hover:-translate-y-0.5 hover:border-copper"
+            >
+              <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-copper">
+                {item.meta}
+              </div>
+              <h3 className="mb-2 text-[16px] font-bold text-ink">
+                {locale === 'fa' ? item.titleFa : item.titleEn}
+              </h3>
+              <p className="text-[13.5px] leading-relaxed text-slate">
+                {locale === 'fa' ? item.descFa : item.descEn}
+              </p>
+            </a>
+          ))}
         </div>
 
-        {loading && (
-          <p className="mono text-sm text-slate-light">
-            {t('در حال بارگذاری مخزن‌ها…', 'Loading repositories…')}
-          </p>
-        )}
-        {error && (
-          <p className="mono text-sm text-slate-light">
-            {t(
-              'امکان بارگذاری مخزن‌ها در حال حاضر وجود ندارد.',
-              'Unable to load repositories right now.',
-            )}
-          </p>
-        )}
-        {!loading && !error && (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {repos.map((repo) => (
-              <a
-                key={repo.name}
-                href={repo.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card block p-4 transition hover:-translate-y-0.5 hover:border-copper"
-              >
-                <div className="mono mb-1 text-[13.5px] font-bold text-ink">
-                  {repo.name}
-                </div>
-                <div className="mb-2 min-h-8 text-[12.8px] text-slate">
-                  {repo.description ||
-                    (locale === 'fa' ? 'بدون توضیح' : 'No description')}
-                </div>
-                <div className="mono text-[11px] text-slate-light">
-                  {(repo.language ? `${repo.language} · ` : '') +
-                    `★ ${repo.stargazers_count}`}
-                </div>
-              </a>
-            ))}
-          </div>
-        )}
+        <div className="mt-6">
+          <a
+            href="https://github.com/elman-ctrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary chamfer-sm"
+          >
+            {t('مشاهده پروفایل گیت‌هاب', 'View GitHub Profile')}
+          </a>
+        </div>
       </div>
     </section>
   );

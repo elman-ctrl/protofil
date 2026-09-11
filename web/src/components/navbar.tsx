@@ -8,7 +8,7 @@ const links = [
   { href: '#skills', fa: 'مهارت‌ها', en: 'Skills' },
   { href: '#projects', fa: 'پروژه‌ها', en: 'Projects' },
   { href: '#resume', fa: 'رزومه', en: 'Resume' },
-  { href: '#github', fa: 'گیت‌هاب', en: 'GitHub' },
+  { href: '#github', fa: 'کد و مستندات', en: 'Code & Docs' },
   { href: '#contact', fa: 'ارتباط', en: 'Contact' },
 ];
 

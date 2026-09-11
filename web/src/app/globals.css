@@ -155,7 +155,7 @@ a {
 }
 
 .section {
-  padding: 3.5rem 0;
+  padding: 5rem 0;
   scroll-margin-top: var(--nav-h);
 }
 
@@ -165,24 +165,6 @@ a {
 
 .hand {
   font-family: var(--font-vazirmatn), 'Vazirmatn', sans-serif;
-}
-
-.resume-preview {
-  position: relative;
-  max-height: 22rem;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: #fff;
-}
-
-.resume-preview::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  height: 5rem;
-  background: linear-gradient(to top, #fff 10%, transparent);
-  pointer-events: none;
 }
 
 /* ===== Site navbar — dark teal, light readable links ===== */
@@ -294,23 +276,6 @@ a {
 
 .cv-ltr {
   unicode-bidi: isolate;
-}
-
-.resume-lang {
-  background: #fff;
-  border: 1px solid var(--line);
-}
-
-.resume-lang button {
-  color: var(--slate);
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-}
-
-.resume-lang button.is-active {
-  background: var(--copper);
-  color: #fff;
 }
 
 .cv__hero {
@@ -542,12 +507,8 @@ a {
   line-height: 1.65;
   color: var(--teal-800);
   direction: ltr;
-  text-align: start;
-  unicode-bidi: isolate;
-}
-
-.cv[dir='rtl'] .cv__stack {
   text-align: right;
+  unicode-bidi: isolate;
 }
 
 @media (max-width: 760px) {

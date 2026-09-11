@@ -3,6 +3,12 @@
 import type { Project } from '@/lib/types';
 import { useLang } from './lang-provider';
 
+function asList(value: unknown, locale: 'fa' | 'en'): string[] {
+  if (!value || typeof value !== 'object') return [];
+  const obj = value as { fa?: string[]; en?: string[] };
+  return (locale === 'fa' ? obj.fa : obj.en) ?? [];
+}
+
 export function ProjectsSection({ projects }: { projects: Project[] }) {
   const { t, locale } = useLang();
 
@@ -10,55 +16,91 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
     <section id="projects" className="section">
       <div className="wrap">
         <div className="eyebrow">{t('پروژه‌ها', 'Projects')}</div>
-        <h2 className="mb-8 text-[clamp(1.5rem,3vw,1.95rem)] font-extrabold text-ink">
-          {t('نمونه‌کارها', 'Selected Work')}
+        <h2 className="mb-10 text-[clamp(1.5rem,3vw,1.95rem)] font-extrabold text-ink">
+          {t('نمونه‌کارهای فنی', 'Technical Case Studies')}
         </h2>
 
         <div className="flex flex-col gap-4">
-          {projects.map((project) => (
-            <article key={project.id} className="card p-5">
-              <h3 className="mb-2 text-[17px] font-bold text-ink">
-                {locale === 'fa' ? project.titleFa : project.titleEn}
-              </h3>
-              <p className="mb-3 text-[14.5px] text-slate">
-                {locale === 'fa' ? project.descriptionFa : project.descriptionEn}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tag) => (
-                  <span
-                    key={tag}
-                    className="border border-line bg-paper px-2.5 py-1 text-[11.5px] text-teal-800"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              {(project.repoUrl || project.demoUrl) && (
-                <div className="mt-3 flex flex-wrap gap-4">
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[13px] font-semibold text-copper"
-                    >
-                      {t('مخزن کد', 'Repository')}
-                    </a>
-                  )}
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[13px] font-semibold text-copper"
-                    >
-                      {t('دمو', 'Demo')}
-                    </a>
-                  )}
+          {projects.map((project) => {
+            const features = asList(project.features, locale);
+            const challenges = asList(project.challenges, locale);
+            return (
+              <article
+                key={project.id}
+                className="card p-6 transition hover:border-copper hover:shadow-[0_10px_28px_rgba(17,33,29,0.06)]"
+              >
+                <h3 className="mb-2 text-[17.5px] font-bold text-ink">
+                  {locale === 'fa' ? project.titleFa : project.titleEn}
+                </h3>
+                <p className="mb-4 text-[14.5px] text-slate">
+                  {locale === 'fa' ? project.descriptionFa : project.descriptionEn}
+                </p>
+
+                <div className="mb-4 grid gap-4 md:grid-cols-2">
+                  <div>
+                    <h5 className="mono mb-2 text-[10.5px] uppercase tracking-wide text-copper">
+                      {t('ویژگی‌ها', 'Features')}
+                    </h5>
+                    <ul className="space-y-1 text-[13.3px] text-slate">
+                      {features.map((item) => (
+                        <li key={item} className="relative ps-3.5 before:absolute before:start-0 before:content-['–'] before:text-slate-light">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="mono mb-2 text-[10.5px] uppercase tracking-wide text-copper">
+                      {t('چالش‌های حل‌شده', 'Challenges Solved')}
+                    </h5>
+                    <ul className="space-y-1 text-[13.3px] text-slate">
+                      {challenges.map((item) => (
+                        <li key={item} className="relative ps-3.5 before:absolute before:start-0 before:content-['–'] before:text-slate-light">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              )}
-            </article>
-          ))}
+
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.map((tag) => (
+                    <span
+                      key={tag}
+                      className="mono border border-line bg-paper px-2.5 py-1 text-[11.5px] text-teal-800"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {(project.repoUrl || project.demoUrl) && (
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    {project.repoUrl && (
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mono text-[12px] font-semibold text-copper hover:text-copper-bright"
+                      >
+                        {t('مخزن کد →', 'Repository →')}
+                      </a>
+                    )}
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mono text-[12px] font-semibold text-copper hover:text-copper-bright"
+                      >
+                        {t('دمو →', 'Demo →')}
+                      </a>
+                    )}
+                  </div>
+                )}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

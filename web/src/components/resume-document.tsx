@@ -3,39 +3,6 @@
 import { resumeDocument as r } from '@/lib/resume-content';
 import { useLang } from './lang-provider';
 
-function Mixed({ text, rtl }: { text: string; rtl: boolean }) {
-  if (!rtl) return <>{text}</>;
-
-  const parts = text
-    .split(
-      /(\(?[A-Za-z][A-Za-z0-9+./()_-]*(?:[\s،,·/-]+[A-Za-z][A-Za-z0-9+./()_-]*)*\)?)/g,
-    )
-    .filter((part) => part !== '');
-
-  return (
-    <>
-      {parts.map((part, i) =>
-        /[A-Za-z]/.test(part) ? (
-          <span key={`ltr-${i}`} dir="ltr" className="cv-ltr">
-            {part}
-          </span>
-        ) : (
-          <span key={`txt-${i}`}>{part}</span>
-        ),
-      )}
-      <span>{'\u200F'}</span>
-    </>
-  );
-}
-
-function latinItems(items: readonly string[]) {
-  return items.filter((item) => /[A-Za-z]/.test(item) && !/[آ-ی]/.test(item));
-}
-
-function persianItems(items: readonly string[]) {
-  return items.filter((item) => /[آ-ی]/.test(item));
-}
-
 export function ResumeDocument() {
   const { locale, t } = useLang();
   const fa = locale === 'fa';
@@ -46,9 +13,7 @@ export function ResumeDocument() {
         <div className="cv__identity">
           <h1>{fa ? r.nameFa : r.nameEn}</h1>
           <p className="cv__role">{fa ? r.titleFa : r.titleEn}</p>
-          <p className="cv__focus">
-            <Mixed rtl={fa} text={fa ? r.focusFa : r.focusEn} />
-          </p>
+          <p className="cv__focus">{fa ? r.focusFa : r.focusEn}</p>
         </div>
         <ul className="cv__contacts">
           <li>
@@ -74,32 +39,12 @@ export function ResumeDocument() {
         <aside className="cv__side">
           <section>
             <h2>{t('مهارت‌ها', 'Skills')}</h2>
-            {r.skillGroups.map((group) => {
-              const items = fa ? group.itemsFa : group.itemsEn;
-              return (
-                <div key={group.en} className="cv__skill">
-                  <h3>{fa ? group.fa : group.en}</h3>
-                  <p>
-                    {fa ? (
-                      <>
-                        <span dir="ltr" className="cv-ltr">
-                          {latinItems(items).join(' · ')}
-                        </span>
-                        {persianItems(items).map((item) => (
-                          <span key={item}>
-                            {' · '}
-                            {item}
-                          </span>
-                        ))}
-                        {'\u200F'}
-                      </>
-                    ) : (
-                      items.join(' · ')
-                    )}
-                  </p>
-                </div>
-              );
-            })}
+            {r.skillGroups.map((group) => (
+              <div key={group.en} className="cv__skill">
+                <h3>{fa ? group.fa : group.en}</h3>
+                <p>{(fa ? group.itemsFa : group.itemsEn).join(' · ')}</p>
+              </div>
+            ))}
           </section>
 
           <section>
@@ -118,9 +63,7 @@ export function ResumeDocument() {
         <div className="cv__main">
           <section>
             <h2>{t('هدف شغلی', 'Objective')}</h2>
-            <p className="cv__lead">
-              <Mixed rtl={fa} text={fa ? r.objectiveFa : r.objectiveEn} />
-            </p>
+            <p className="cv__lead">{fa ? r.objectiveFa : r.objectiveEn}</p>
           </section>
 
           <section>
@@ -139,11 +82,11 @@ export function ResumeDocument() {
                 {fa ? r.experience.companyFa : r.experience.companyEn}
               </p>
               <ul>
-                {(fa ? r.experience.bulletsFa : r.experience.bulletsEn).map((bullet) => (
-                  <li key={bullet}>
-                    <Mixed rtl={fa} text={bullet} />
-                  </li>
-                ))}
+                {(fa ? r.experience.bulletsFa : r.experience.bulletsEn).map(
+                  (bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ),
+                )}
               </ul>
               <p className="cv__stack">{r.experience.stack.join(' · ')}</p>
             </article>
@@ -163,9 +106,7 @@ export function ResumeDocument() {
 
           <section>
             <h2>{t('نقاط قوت', 'Strengths')}</h2>
-            <p className="cv__lead">
-              <Mixed rtl={fa} text={fa ? r.strengthFa : r.strengthEn} />
-            </p>
+            <p className="cv__lead">{fa ? r.strengthFa : r.strengthEn}</p>
           </section>
         </div>
       </div>

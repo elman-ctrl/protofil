@@ -5,10 +5,8 @@ import { useLang } from './lang-provider';
 
 const links = [
   { href: '#about', fa: 'درباره', en: 'About' },
-  { href: '#skills', fa: 'مهارت‌ها', en: 'Skills' },
   { href: '#projects', fa: 'پروژه‌ها', en: 'Projects' },
   { href: '#resume', fa: 'رزومه', en: 'Resume' },
-  { href: '#github', fa: 'کد و مستندات', en: 'Code & Docs' },
   { href: '#contact', fa: 'ارتباط', en: 'Contact' },
 ];
 
@@ -32,15 +30,12 @@ export function Navbar() {
       style={{ height: 'var(--nav-h)' }}
     >
       <div className="wrap flex h-full items-center justify-between gap-4">
-        <a href="#top" className="site-nav__brand flex items-center gap-2 text-sm font-bold">
-          <span className="mono flex h-8 w-8 items-center justify-center border border-copper/40 bg-copper/10 text-[11px] text-copper">
-            EF
-          </span>
+        <a href="#top" className="site-nav__brand text-sm font-bold">
           {t('المان فتوحی', 'Elman Fotouhi')}
         </a>
 
         <ul
-          className={`site-nav__links md:flex md:items-center md:gap-6 ${
+          className={`site-nav__links md:flex md:items-center md:gap-7 ${
             open ? 'is-open' : 'max-md:hidden'
           }`}
         >
@@ -62,7 +57,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setLocale('fa')}
-              className={`mono px-2.5 py-1 text-[11px] font-semibold ${
+              className={`px-2.5 py-1 text-[11px] font-semibold ${
                 locale === 'fa' ? 'is-active' : ''
               }`}
             >
@@ -71,7 +66,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setLocale('en')}
-              className={`mono px-2.5 py-1 text-[11px] font-semibold ${
+              className={`px-2.5 py-1 text-[11px] font-semibold ${
                 locale === 'en' ? 'is-active' : ''
               }`}
             >

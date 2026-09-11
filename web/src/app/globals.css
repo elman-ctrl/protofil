@@ -35,9 +35,9 @@
   --color-gold: var(--gold);
   --color-sage: var(--sage);
   --font-sans: var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
-  --font-hand: var(--font-caveat), cursive;
+  --font-display: var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
@@ -52,12 +52,12 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-vazirmatn), sans-serif;
+  font-family: var(--font-vazirmatn), 'Vazirmatn', sans-serif;
   line-height: 1.75;
 }
 
 html.lang-en body {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-vazirmatn), 'Vazirmatn', sans-serif;
   line-height: 1.65;
 }
 
@@ -94,7 +94,7 @@ a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-jetbrains), monospace;
+  font-family: var(--font-vazirmatn), 'Vazirmatn', sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -160,11 +160,11 @@ a {
 }
 
 .mono {
-  font-family: var(--font-jetbrains), monospace;
+  font-family: var(--font-vazirmatn), 'Vazirmatn', sans-serif;
 }
 
 .hand {
-  font-family: var(--font-caveat), cursive;
+  font-family: var(--font-vazirmatn), 'Vazirmatn', sans-serif;
 }
 
 /* ===== Site navbar — dark teal, light readable links ===== */

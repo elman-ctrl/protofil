@@ -43,7 +43,7 @@ export default async function HomePage() {
         <GithubSection />
         <ContactSection />
       </main>
-      <footer className="border-t border-line bg-paper-raised py-4 text-center font-[family-name:var(--font-jetbrains)] text-[12.5px] text-slate-light">
+      <footer className="border-t border-line bg-paper-raised py-4 text-center text-[12.5px] text-slate-light">
         © 2026 Elman Fotouhi
       </footer>
     </>

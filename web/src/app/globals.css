@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f3f6f2;
+  --paper-raised: #ffffff;
+  --ink: #11211d;
+  --slate: #4a5c56;
+  --slate-light: #7e948c;
+  --line: #dce5df;
+  --teal-950: #0a211e;
+  --teal-900: #0f2c28;
+  --teal-800: #163b35;
+  --teal-700: #1f4e46;
+  --copper: #bc7139;
+  --copper-bright: #d68a4e;
+  --gold: #c9a227;
+  --sage: #4f8c74;
+  --chamfer: 16px;
+  --nav-h: 72px;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-slate: var(--slate);
+  --color-slate-light: var(--slate-light);
+  --color-line: var(--line);
+  --color-teal-950: var(--teal-950);
+  --color-teal-900: var(--teal-900);
+  --color-teal-800: var(--teal-800);
+  --color-teal-700: var(--teal-700);
+  --color-copper: var(--copper);
+  --color-copper-bright: var(--copper-bright);
+  --color-gold: var(--gold);
+  --color-sage: var(--sage);
+  --font-sans: var(--font-vazirmatn), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-hand: var(--font-caveat), cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-vazirmatn), sans-serif;
+  line-height: 1.75;
+}
+
+html.lang-en body {
+  font-family: var(--font-inter), sans-serif;
+  line-height: 1.65;
+}
+
+::selection {
+  background: var(--copper);
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1080px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.chamfer {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--chamfer)) 0,
+    100% var(--chamfer),
+    100% 100%,
+    0 100%
+  );
+}
+
+.chamfer-sm {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 0.5rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.125rem;
+  height: 2px;
+  background: var(--copper);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.8rem 1.55rem;
+  border: 1px solid transparent;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--copper);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--copper-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(188, 113, 57, 0.28);
+}
+
+.btn-ghost {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #eef3f0;
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 18px rgba(15, 44, 40, 0.04);
+}
+
+.section {
+  padding: 5rem 0;
+  scroll-margin-top: var(--nav-h);
+}
+
+.mono {
+  font-family: var(--font-jetbrains), monospace;
+}
+
+.hand {
+  font-family: var(--font-caveat), cursive;
+}

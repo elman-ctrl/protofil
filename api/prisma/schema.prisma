@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id             String   @id @default(cuid())
+  titleFa        String   @map("title_fa")
+  titleEn        String   @map("title_en")
+  descriptionFa  String   @map("description_fa") @db.Text
+  descriptionEn  String   @map("description_en") @db.Text
+  features       Json
+  challenges     Json
+  techStack      String[] @map("tech_stack")
+  order          Int      @default(0)
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@map("projects")
+}
+
+model SkillCategory {
+  id        String  @id @default(cuid())
+  nameFa    String  @map("name_fa")
+  nameEn    String  @map("name_en")
+  iconColor String  @map("icon_color")
+  order     Int     @default(0)
+  skills    Skill[]
+
+  @@map("skill_categories")
+}
+
+model Skill {
+  id           String        @id @default(cuid())
+  categoryId   String        @map("category_id")
+  category     SkillCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  name         String
+  levelPercent Int           @map("level_percent")
+  order        Int           @default(0)
+
+  @@map("skills")
+}
+
+model ResumeExperience {
+  id            String @id @default(cuid())
+  titleFa       String @map("title_fa")
+  titleEn       String @map("title_en")
+  descriptionFa String @map("description_fa") @db.Text
+  descriptionEn String @map("description_en") @db.Text
+  order         Int    @default(0)
+
+  @@map("resume_experiences")
+}
+
+model ResumeSkillGroup {
+  id              String   @id @default(cuid())
+  categoryNameFa  String   @map("category_name_fa")
+  categoryNameEn  String   @map("category_name_en")
+  skills          Json
+  order           Int      @default(0)
+
+  @@map("resume_skill_groups")
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("contact_messages")
+}
+
+model ResumeMeta {
+  id          String @id @default("default")
+  summaryFa   String @map("summary_fa") @db.Text
+  summaryEn   String @map("summary_en") @db.Text
+  headlineFa  String @map("headline_fa")
+  headlineEn  String @map("headline_en")
+  locationFa  String @map("location_fa")
+  locationEn  String @map("location_en")
+
+  @@map("resume_meta")
+}

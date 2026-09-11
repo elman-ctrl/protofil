@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: elman-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: elman
+      POSTGRES_PASSWORD: elman
+      POSTGRES_DB: portfolio
+    ports:
+      - "5433:5432"
+    volumes:
+      - elman_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elman -d portfolio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  elman_pg_data:

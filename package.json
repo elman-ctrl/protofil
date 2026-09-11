@@ -1,0 +1,12 @@
+{
+  "name": "elman-portfolio",
+  "private": true,
+  "scripts": {
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "api:dev": "npm --prefix api run start:dev",
+    "web:dev": "npm --prefix web run dev",
+    "api:seed": "npm --prefix api run prisma:seed",
+    "dev": "echo Run in two terminals: npm run api:dev  and  npm run web:dev"
+  }
+}

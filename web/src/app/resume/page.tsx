@@ -6,7 +6,7 @@ import { resumeDocument } from '@/lib/resume-content';
 import { useLang } from '@/components/lang-provider';
 
 export default function ResumePrintPage() {
-  const { t } = useLang();
+  const { locale, setLocale, t } = useLang();
 
   return (
     <div className="min-h-screen bg-paper px-4 py-8 text-ink print:bg-white print:px-0 print:py-0">
@@ -14,7 +14,27 @@ export default function ResumePrintPage() {
         <Link href="/#resume" className="text-sm font-semibold text-copper">
           {t('← بازگشت به سایت', '← Back to site')}
         </Link>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="resume-lang flex p-0.5 chamfer-sm">
+            <button
+              type="button"
+              onClick={() => setLocale('fa')}
+              className={`px-2.5 py-1 text-[11px] font-semibold ${
+                locale === 'fa' ? 'is-active' : ''
+              }`}
+            >
+              FA
+            </button>
+            <button
+              type="button"
+              onClick={() => setLocale('en')}
+              className={`px-2.5 py-1 text-[11px] font-semibold ${
+                locale === 'en' ? 'is-active' : ''
+              }`}
+            >
+              EN
+            </button>
+          </div>
           <a
             href={resumeDocument.pdfHref}
             download

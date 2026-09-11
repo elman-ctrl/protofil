@@ -3,7 +3,9 @@
 import { resumeDocument as r } from '@/lib/resume-content';
 import { useLang } from './lang-provider';
 
-function Mixed({ text }: { text: string }) {
+function Mixed({ text, rtl }: { text: string; rtl: boolean }) {
+  if (!rtl) return <>{text}</>;
+
   const parts = text
     .split(
       /(\(?[A-Za-z][A-Za-z0-9+./()_-]*(?:[\s،,·/-]+[A-Za-z][A-Za-z0-9+./()_-]*)*\)?)/g,
@@ -45,7 +47,7 @@ export function ResumeDocument() {
           <h1>{fa ? r.nameFa : r.nameEn}</h1>
           <p className="cv__role">{fa ? r.titleFa : r.titleEn}</p>
           <p className="cv__focus">
-            <Mixed text={fa ? r.focusFa : r.focusEn} />
+            <Mixed rtl={fa} text={fa ? r.focusFa : r.focusEn} />
           </p>
         </div>
         <ul className="cv__contacts">
@@ -72,23 +74,32 @@ export function ResumeDocument() {
         <aside className="cv__side">
           <section>
             <h2>{t('مهارت‌ها', 'Skills')}</h2>
-            {r.skillGroups.map((group) => (
-              <div key={group.en} className="cv__skill">
-                <h3>{fa ? group.fa : group.en}</h3>
-                <p>
-                  <span dir="ltr" className="cv-ltr">
-                    {latinItems(group.items).join(' · ')}
-                  </span>
-                  {persianItems(group.items).map((item) => (
-                    <span key={item}>
-                      {' · '}
-                      {item}
-                    </span>
-                  ))}
-                  {'\u200F'}
-                </p>
-              </div>
-            ))}
+            {r.skillGroups.map((group) => {
+              const items = fa ? group.itemsFa : group.itemsEn;
+              return (
+                <div key={group.en} className="cv__skill">
+                  <h3>{fa ? group.fa : group.en}</h3>
+                  <p>
+                    {fa ? (
+                      <>
+                        <span dir="ltr" className="cv-ltr">
+                          {latinItems(items).join(' · ')}
+                        </span>
+                        {persianItems(items).map((item) => (
+                          <span key={item}>
+                            {' · '}
+                            {item}
+                          </span>
+                        ))}
+                        {'\u200F'}
+                      </>
+                    ) : (
+                      items.join(' · ')
+                    )}
+                  </p>
+                </div>
+              );
+            })}
           </section>
 
           <section>
@@ -108,7 +119,7 @@ export function ResumeDocument() {
           <section>
             <h2>{t('هدف شغلی', 'Objective')}</h2>
             <p className="cv__lead">
-              <Mixed text={fa ? r.objectiveFa : r.objectiveEn} />
+              <Mixed rtl={fa} text={fa ? r.objectiveFa : r.objectiveEn} />
             </p>
           </section>
 
@@ -130,7 +141,7 @@ export function ResumeDocument() {
               <ul>
                 {(fa ? r.experience.bulletsFa : r.experience.bulletsEn).map((bullet) => (
                   <li key={bullet}>
-                    <Mixed text={bullet} />
+                    <Mixed rtl={fa} text={bullet} />
                   </li>
                 ))}
               </ul>
@@ -153,7 +164,7 @@ export function ResumeDocument() {
           <section>
             <h2>{t('نقاط قوت', 'Strengths')}</h2>
             <p className="cv__lead">
-              <Mixed text={fa ? r.strengthFa : r.strengthEn} />
+              <Mixed rtl={fa} text={fa ? r.strengthFa : r.strengthEn} />
             </p>
           </section>
         </div>

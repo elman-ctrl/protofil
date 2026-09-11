@@ -296,6 +296,23 @@ a {
   unicode-bidi: isolate;
 }
 
+.resume-lang {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.resume-lang button {
+  color: var(--slate);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.resume-lang button.is-active {
+  background: var(--copper);
+  color: #fff;
+}
+
 .cv__hero {
   display: grid;
   grid-template-columns: 1.35fr 0.9fr;
@@ -525,8 +542,12 @@ a {
   line-height: 1.65;
   color: var(--teal-800);
   direction: ltr;
-  text-align: right;
+  text-align: start;
   unicode-bidi: isolate;
+}
+
+.cv[dir='rtl'] .cv__stack {
+  text-align: right;
 }
 
 @media (max-width: 760px) {

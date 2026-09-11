@@ -27,10 +27,20 @@ export function LangProvider({ children }: { children: ReactNode }) {
     setLocaleState(next);
     if (typeof window !== 'undefined') {
       localStorage.setItem('portfolio-lang', next);
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', next);
+      window.history.replaceState({}, '', url);
     }
   }, []);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const fromUrl = params.get('lang');
+    if (fromUrl === 'fa' || fromUrl === 'en') {
+      setLocaleState(fromUrl);
+      localStorage.setItem('portfolio-lang', fromUrl);
+      return;
+    }
     const saved = localStorage.getItem('portfolio-lang');
     if (saved === 'fa' || saved === 'en') setLocaleState(saved);
   }, []);

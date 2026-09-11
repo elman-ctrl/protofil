@@ -17,7 +17,7 @@ export const resumeDocument = {
     {
       fa: 'تونل و VPN',
       en: 'Tunnels & VPN',
-      items: [
+      itemsFa: [
         'GRE',
         'EoIP',
         'IPsec',
@@ -28,11 +28,30 @@ export const resumeDocument = {
         'SSTP',
         'زنجیره تونل چندمرحله‌ای',
       ],
+      itemsEn: [
+        'GRE',
+        'EoIP',
+        'IPsec',
+        'WireGuard',
+        'OpenVPN',
+        'L2TP/IPsec',
+        'PPTP',
+        'SSTP',
+        'Multi-stage tunnel chaining',
+      ],
     },
     {
       fa: 'روتینگ و فایروال',
       en: 'Routing & Firewall',
-      items: [
+      itemsFa: [
+        'Policy Routing',
+        'Load Balancing (PCC)',
+        'Failover',
+        'NAT',
+        'Hairpin NAT',
+        'Port Forwarding',
+      ],
+      itemsEn: [
         'Policy Routing',
         'Load Balancing (PCC)',
         'Failover',
@@ -44,12 +63,14 @@ export const resumeDocument = {
     {
       fa: 'پایداری و مانیتورینگ',
       en: 'Resilience & Monitoring',
-      items: ['Netwatch', 'SNMP', 'iperf', 'بکاپ خودکار', 'Disaster Recovery', 'MikroTik API'],
+      itemsFa: ['Netwatch', 'SNMP', 'iperf', 'بکاپ خودکار', 'Disaster Recovery', 'MikroTik API'],
+      itemsEn: ['Netwatch', 'SNMP', 'iperf', 'Automated backup', 'Disaster Recovery', 'MikroTik API'],
     },
     {
       fa: 'ابزارها',
       en: 'Tools',
-      items: ['Winbox', 'Claude', 'Cursor', 'مستندسازی فنی'],
+      itemsFa: ['Winbox', 'Claude', 'Cursor', 'مستندسازی فنی'],
+      itemsEn: ['Winbox', 'Claude', 'Cursor', 'Technical documentation'],
     },
   ],
   experience: {

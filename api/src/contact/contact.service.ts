@@ -20,4 +20,14 @@ export class ContactService {
       createdAt: message.createdAt,
     };
   }
+
+  findAll() {
+    return this.prisma.contactMessage.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
+  remove(id: string) {
+    return this.prisma.contactMessage.delete({ where: { id } });
+  }
 }

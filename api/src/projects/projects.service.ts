@@ -19,6 +19,8 @@ export class ProjectsService {
     features: object;
     challenges: object;
     techStack: string[];
+    repoUrl?: string;
+    demoUrl?: string;
     order?: number;
   }) {
     return this.prisma.project.create({ data });
@@ -34,6 +36,8 @@ export class ProjectsService {
       features: object;
       challenges: object;
       techStack: string[];
+      repoUrl: string | null;
+      demoUrl: string | null;
       order: number;
     }>,
   ) {

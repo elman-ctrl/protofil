@@ -7,24 +7,36 @@ import { Navbar } from '@/components/navbar';
 import { ProjectsSection } from '@/components/projects-section';
 import { ResumeSection } from '@/components/resume-section';
 import { SkillsSection } from '@/components/skills-section';
-import { getProjects, getResume, getSkillCategories } from '@/lib/api';
+import {
+  getProjects,
+  getResume,
+  getSiteContent,
+  getSkillCategories,
+} from '@/lib/api';
+import type { SiteAbout, SiteHero, SitePathHop, SiteStat } from '@/lib/types';
 
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [projects, skillCategories, resume] = await Promise.all([
+  const [projects, skillCategories, resume, site] = await Promise.all([
     getProjects(),
     getSkillCategories(),
     getResume(),
+    getSiteContent(),
   ]);
+
+  const hero = site?.hero as SiteHero | undefined;
+  const about = site?.about as SiteAbout | undefined;
+  const learningPath = site?.learningPath as SitePathHop[] | undefined;
+  const stats = site?.stats as SiteStat[] | undefined;
 
   return (
     <>
       <Navbar />
-      <Hero />
+      <Hero hero={hero} stats={stats} />
       <main>
-        <LearningPath />
-        <AboutSection />
+        <LearningPath hops={learningPath} />
+        <AboutSection about={about} />
         <SkillsSection categories={skillCategories} />
         <ProjectsSection projects={projects} />
         <ResumeSection resume={resume} />

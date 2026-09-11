@@ -61,14 +61,23 @@ npm run dev
 
 سایت: http://localhost:3000
 
-## مدیریت محتوا
-
-بعد از seed اولیه، پروژه‌ها / مهارت‌ها / رزومه از دیتابیس می‌آیند.
-برای آپدیت بدون تغییر کد:
+## Production (Docker)
 
 ```bash
-cd api
-npx prisma studio
+docker compose up -d --build
 ```
 
-یا از اندپوینت‌های ادمین با توکن `.env` استفاده کنید.
+- Web: http://localhost:3000
+- API: http://localhost:3001
+- Admin UI: http://localhost:3000/admin (token از `ADMIN_TOKEN`)
+- Printable resume: http://localhost:3000/resume
+
+## Admin API
+
+Header: `x-admin-token: <ADMIN_TOKEN>`
+
+- `GET /admin/contact` · `DELETE /admin/contact/:id`
+- `POST|PATCH|DELETE /admin/projects`
+- `PUT /admin/site`
+- `PATCH /admin/resume/meta`
+- `GET /health`

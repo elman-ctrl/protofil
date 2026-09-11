@@ -4,10 +4,23 @@ import {
   IsObject,
   IsOptional,
   IsString,
+  IsUrl,
   Max,
   Min,
   MinLength,
+  ValidateNested,
 } from 'class-validator';
+import { Type } from 'class-transformer';
+
+class LocalizedListDto {
+  @IsArray()
+  @IsString({ each: true })
+  fa!: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  en!: string[];
+}
 
 export class CreateProjectDto {
   @IsString()
@@ -27,14 +40,26 @@ export class CreateProjectDto {
   descriptionEn!: string;
 
   @IsObject()
-  features!: { fa: string[]; en: string[] };
+  @ValidateNested()
+  @Type(() => LocalizedListDto)
+  features!: LocalizedListDto;
 
   @IsObject()
-  challenges!: { fa: string[]; en: string[] };
+  @ValidateNested()
+  @Type(() => LocalizedListDto)
+  challenges!: LocalizedListDto;
 
   @IsArray()
   @IsString({ each: true })
   techStack!: string[];
+
+  @IsOptional()
+  @IsUrl({ require_tld: false })
+  repoUrl?: string;
+
+  @IsOptional()
+  @IsUrl({ require_tld: false })
+  demoUrl?: string;
 
   @IsOptional()
   @IsInt()
@@ -61,16 +86,28 @@ export class UpdateProjectDto {
 
   @IsOptional()
   @IsObject()
-  features?: { fa: string[]; en: string[] };
+  @ValidateNested()
+  @Type(() => LocalizedListDto)
+  features?: LocalizedListDto;
 
   @IsOptional()
   @IsObject()
-  challenges?: { fa: string[]; en: string[] };
+  @ValidateNested()
+  @Type(() => LocalizedListDto)
+  challenges?: LocalizedListDto;
 
   @IsOptional()
   @IsArray()
   @IsString({ each: true })
   techStack?: string[];
+
+  @IsOptional()
+  @IsUrl({ require_tld: false })
+  repoUrl?: string | null;
+
+  @IsOptional()
+  @IsUrl({ require_tld: false })
+  demoUrl?: string | null;
 
   @IsOptional()
   @IsInt()

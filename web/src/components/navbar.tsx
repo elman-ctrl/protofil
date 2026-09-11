@@ -18,7 +18,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -26,26 +26,22 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200 ${
-        scrolled
-          ? 'border-white/10 bg-[rgba(10,33,30,0.9)] backdrop-blur-md'
-          : 'border-transparent bg-transparent'
+      className={`site-nav fixed inset-x-0 top-0 z-50 border-b transition-all duration-200 ${
+        scrolled || open ? 'site-nav--solid' : 'site-nav--hero'
       }`}
       style={{ height: 'var(--nav-h)' }}
     >
       <div className="wrap flex h-full items-center justify-between gap-4">
-        <a href="#top" className="flex items-center gap-2 text-sm font-bold text-[#EEF3F0]">
-          <span className="mono flex h-8 w-8 items-center justify-center border border-[#D68A4E]/50 bg-[rgba(214,138,78,0.12)] text-[11px] text-[#D68A4E]">
+        <a href="#top" className="site-nav__brand flex items-center gap-2 text-sm font-bold">
+          <span className="mono flex h-8 w-8 items-center justify-center border border-copper/40 bg-copper/10 text-[11px] text-copper">
             EF
           </span>
           {t('المان فتوحی', 'Elman Fotouhi')}
         </a>
 
         <ul
-          className={`md:flex md:items-center md:gap-5 ${
-            open
-              ? 'absolute inset-x-0 top-[var(--nav-h)] flex flex-col gap-0 border-b border-white/10 bg-[rgba(10,33,30,0.97)] px-6 py-3'
-              : 'hidden'
+          className={`site-nav__links md:flex md:items-center md:gap-6 ${
+            open ? 'is-open' : 'max-md:hidden'
           }`}
         >
           {links.map((link) => (
@@ -53,7 +49,7 @@ export function Navbar() {
               <a
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block border-b border-white/5 py-3 text-sm font-semibold text-[#C7D4CD] transition hover:text-white md:border-0 md:py-0"
+                className="site-nav__link block py-3 text-sm font-semibold md:py-0"
               >
                 {locale === 'fa' ? link.fa : link.en}
               </a>
@@ -62,12 +58,12 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <div className="flex bg-white/5 p-0.5 chamfer-sm">
+          <div className="site-nav__lang flex p-0.5 chamfer-sm">
             <button
               type="button"
               onClick={() => setLocale('fa')}
               className={`mono px-2.5 py-1 text-[11px] font-semibold ${
-                locale === 'fa' ? 'bg-copper text-white' : 'text-[#8FA39A]'
+                locale === 'fa' ? 'is-active' : ''
               }`}
             >
               FA
@@ -76,7 +72,7 @@ export function Navbar() {
               type="button"
               onClick={() => setLocale('en')}
               className={`mono px-2.5 py-1 text-[11px] font-semibold ${
-                locale === 'en' ? 'bg-copper text-white' : 'text-[#8FA39A]'
+                locale === 'en' ? 'is-active' : ''
               }`}
             >
               EN
@@ -84,11 +80,12 @@ export function Navbar() {
           </div>
           <button
             type="button"
-            className="grid h-9 w-9 place-items-center border border-white/15 text-white md:hidden"
+            className="site-nav__burger grid h-9 w-9 place-items-center md:hidden"
             aria-label="Menu"
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="block h-0.5 w-4 bg-white" />
+            <span className="block h-0.5 w-4" />
           </button>
         </div>
       </div>

@@ -1,4 +1,9 @@
-import type { Project, ResumePayload, SkillCategory } from './types';
+import type {
+  Project,
+  ResumePayload,
+  SiteContent,
+  SkillCategory,
+} from './types';
 
 const API_URL =
   process.env.API_URL ??
@@ -22,16 +27,33 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+async function safeFetch<T>(path: string, fallback: T): Promise<T> {
+  try {
+    return await apiFetch<T>(path);
+  } catch {
+    return fallback;
+  }
+}
+
 export function getProjects() {
-  return apiFetch<Project[]>('/projects');
+  return safeFetch<Project[]>('/projects', []);
 }
 
 export function getSkillCategories() {
-  return apiFetch<SkillCategory[]>('/skill-categories');
+  return safeFetch<SkillCategory[]>('/skill-categories', []);
 }
 
 export function getResume() {
-  return apiFetch<ResumePayload>('/resume');
+  return safeFetch<ResumePayload>('/resume', {
+    meta: null,
+    experiences: [],
+    skillGroups: [],
+    keyProjects: [],
+  });
+}
+
+export function getSiteContent() {
+  return safeFetch<SiteContent | null>('/site', null);
 }
 
 export function getApiBase() {

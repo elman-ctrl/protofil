@@ -10,6 +10,7 @@ async function main() {
   await prisma.resumeSkillGroup.deleteMany();
   await prisma.contactMessage.deleteMany();
   await prisma.resumeMeta.deleteMany();
+  await prisma.siteContent.deleteMany();
 
   await prisma.resumeMeta.create({
     data: {
@@ -401,6 +402,7 @@ async function main() {
         'Grafana',
         'UFW',
       ],
+      repoUrl: 'https://github.com/elman-ctrl',
       order: 6,
     },
   ];
@@ -408,6 +410,132 @@ async function main() {
   for (const project of projects) {
     await prisma.project.create({ data: project });
   }
+
+  await prisma.siteContent.create({
+    data: {
+      id: 'default',
+      hero: {
+        availabilityFa: 'در دسترس برای همکاری و پروژه',
+        availabilityEn: 'Available for collaboration & freelance work',
+        nameFa: 'المان فتوحی',
+        nameEn: 'Elman Fotouhi',
+        roleBeforeFa: 'در مسیر تخصصی ',
+        roleBeforeEn: 'Professional competency in ',
+        roleNetworkFa: 'مهندسی شبکه',
+        roleNetworkEn: 'Network Engineering',
+        roleMidFa: ' و ',
+        roleMidEn: ' and ',
+        roleAfterFa:
+          ' — از پیکربندی VPN و زیرساخت شبکه تا اتوماسیون دیپلوی و مدیریت سرور.',
+        roleAfterEn:
+          ' — from VPN configuration and network infrastructure to deployment automation and server administration.',
+        caps: [
+          { fa: 'زیرساخت سرور', en: 'Server infra' },
+          { fa: 'شبکه و VPN', en: 'Networking & VPN' },
+          { fa: 'اتوماسیون CI/CD', en: 'CI/CD automation' },
+        ],
+        ctaProjectsFa: 'مشاهده پروژه‌ها',
+        ctaProjectsEn: 'View Projects',
+        ctaContactFa: 'تماس با من',
+        ctaContactEn: 'Contact Me',
+        email: 'Elmanfotouhi@gmail.com',
+      },
+      about: {
+        titleFa: 'یادگیری ساخت‌یافته، پروژه‌محور',
+        titleEn: 'Structured, Project-Driven Learning',
+        cards: [
+          {
+            titleFa: 'کیستم',
+            titleEn: 'Who I Am',
+            bodyFa:
+              'دانشجوی مهندسی شبکه و DevOps هستم که یادگیری را از طریق ساختن زیرساخت‌های واقعی دنبال می‌کنم، نه فقط دوره دیدن.',
+            bodyEn:
+              "I'm someone learning network engineering and DevOps by building real infrastructure, not just taking courses.",
+          },
+          {
+            titleFa: 'تخصص من',
+            titleEn: 'What I Specialize In',
+            bodyFa:
+              'پیکربندی و امن‌سازی شبکه با MikroTik، تانل‌های VPN، و مدیریت کامل سرورهای لینوکسی از جمله زیرساخت ایمیل.',
+            bodyEn:
+              'Network configuration and security with MikroTik, VPN tunneling, and full Linux server administration including email infrastructure.',
+          },
+          {
+            titleFa: 'مسئله‌هایی که حل می‌کنم',
+            titleEn: 'Problems I Solve',
+            bodyFa:
+              'اتصال امن بین شبکه‌ها، راه‌اندازی زیرساخت سرویس‌های حیاتی مثل ایمیل، و اتوماسیون فرآیندهای دیپلوی برای کاهش خطای انسانی.',
+            bodyEn:
+              'Secure connectivity between networks, standing up infrastructure for critical services like email, and automating deployment workflows to reduce human error.',
+          },
+          {
+            titleFa: 'فلسفه کاری من',
+            titleEn: 'My Development Philosophy',
+            bodyFa:
+              'قبل از اجرا، کامل بفهم. مستند کن. اول در محیط ایزوله تست کن. پایداری را فدای سرعت نکن.',
+            bodyEn:
+              'Understand fully before you execute. Document as you go. Test in isolation first. Never trade stability for speed.',
+          },
+        ],
+        principles: [
+          {
+            fa: 'مستندسازی هر مرحله پیش از اجرا',
+            en: 'Document every step before execution',
+          },
+          {
+            fa: 'تست در محیط آزمایشی پیش از تغییر روی سرویس فعال',
+            en: 'Test in a lab environment before touching live services',
+          },
+          {
+            fa: 'اولویت با پایداری زیرساخت، نه سرعت',
+            en: 'Prioritize infrastructure stability over speed',
+          },
+          {
+            fa: 'یادگیری از طریق پیاده‌سازی واقعی، نه فقط تئوری',
+            en: 'Learn through real implementation, not just theory',
+          },
+        ],
+        quoteFa:
+          'به یادگیری‌ای اعتقاد دارم که با ساختن همراه باشد، نه فقط خواندن.',
+        quoteEn:
+          'I believe in learning that comes from building, not just reading.',
+        quoteByFa: '— المان',
+        quoteByEn: '— Elman',
+      },
+      learningPath: [
+        {
+          num: '01',
+          fa: 'پایه‌ها',
+          en: 'Fundamentals',
+          sub: 'Git · Docker · Linux',
+        },
+        {
+          num: '02',
+          fa: 'DevOps',
+          en: 'DevOps',
+          sub: 'CI/CD · GitHub Actions',
+        },
+        {
+          num: '03',
+          fa: 'زیرساخت سرور',
+          en: 'Server Infrastructure',
+          sub: 'Mail Server · DNS',
+        },
+        {
+          num: '04',
+          fa: 'شبکه و VPN',
+          en: 'Networking & VPN',
+          sub: 'MikroTik · WireGuard · L2TP',
+        },
+      ],
+      stats: [
+        { n: '6', fa: 'پروژه', en: 'Projects' },
+        { n: '20+', fa: 'ابزار', en: 'Tools' },
+        { n: '31', fa: 'مبحث مستند', en: 'Docs' },
+        { n: '4', fa: 'مرحله مسیر', en: 'Stages' },
+      ],
+    },
+  });
 
   console.log('Seed completed.');
 }

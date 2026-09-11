@@ -73,6 +73,31 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                     </span>
                   ))}
                 </div>
+
+                {(project.repoUrl || project.demoUrl) && (
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    {project.repoUrl && (
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mono text-[12px] font-semibold text-copper hover:text-copper-bright"
+                      >
+                        {t('مخزن کد →', 'Repository →')}
+                      </a>
+                    )}
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mono text-[12px] font-semibold text-copper hover:text-copper-bright"
+                      >
+                        {t('دمو →', 'Demo →')}
+                      </a>
+                    )}
+                  </div>
+                )}
               </article>
             );
           })}

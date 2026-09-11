@@ -106,8 +106,8 @@ export function ResumeSection({ resume }: { resume: ResumePayload }) {
           </div>
 
           <div className="mt-6 flex justify-end">
-            <a href="/elman-fotouhi-resume.pdf" download className="btn btn-primary chamfer-sm">
-              {t('دانلود نسخه PDF', 'Download PDF Version')}
+            <a href="/resume" className="btn btn-primary chamfer-sm">
+              {t('نسخه قابل چاپ / PDF', 'Printable / PDF version')}
             </a>
           </div>
         </div>

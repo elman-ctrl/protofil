@@ -14,6 +14,8 @@ export type Project = {
   features: LocalizedList;
   challenges: LocalizedList;
   techStack: string[];
+  repoUrl?: string | null;
+  demoUrl?: string | null;
   order: number;
   createdAt: string;
 };
@@ -73,4 +75,62 @@ export type ResumePayload = {
     descriptionEn: string;
     techStack: string[];
   }>;
+};
+
+export type SiteHero = {
+  availabilityFa: string;
+  availabilityEn: string;
+  nameFa: string;
+  nameEn: string;
+  roleBeforeFa: string;
+  roleBeforeEn: string;
+  roleNetworkFa: string;
+  roleNetworkEn: string;
+  roleMidFa: string;
+  roleMidEn: string;
+  roleAfterFa: string;
+  roleAfterEn: string;
+  caps: Array<{ fa: string; en: string }>;
+  ctaProjectsFa: string;
+  ctaProjectsEn: string;
+  ctaContactFa: string;
+  ctaContactEn: string;
+  email: string;
+};
+
+export type SiteAbout = {
+  titleFa: string;
+  titleEn: string;
+  cards: Array<{
+    titleFa: string;
+    titleEn: string;
+    bodyFa: string;
+    bodyEn: string;
+  }>;
+  principles: Array<{ fa: string; en: string }>;
+  quoteFa: string;
+  quoteEn: string;
+  quoteByFa: string;
+  quoteByEn: string;
+};
+
+export type SitePathHop = {
+  num: string;
+  fa: string;
+  en: string;
+  sub: string;
+};
+
+export type SiteStat = {
+  n: string;
+  fa: string;
+  en: string;
+};
+
+export type SiteContent = {
+  id: string;
+  hero: SiteHero;
+  about: SiteAbout;
+  learningPath: SitePathHop[];
+  stats: SiteStat[];
 };

@@ -16,6 +16,8 @@ model Project {
   features       Json
   challenges     Json
   techStack      String[] @map("tech_stack")
+  repoUrl        String?  @map("repo_url")
+  demoUrl        String?  @map("demo_url")
   order          Int      @default(0)
   createdAt      DateTime @default(now()) @map("created_at")
 
@@ -56,11 +58,11 @@ model ResumeExperience {
 }
 
 model ResumeSkillGroup {
-  id              String   @id @default(cuid())
-  categoryNameFa  String   @map("category_name_fa")
-  categoryNameEn  String   @map("category_name_en")
-  skills          Json
-  order           Int      @default(0)
+  id             String @id @default(cuid())
+  categoryNameFa String @map("category_name_fa")
+  categoryNameEn String @map("category_name_en")
+  skills         Json
+  order          Int    @default(0)
 
   @@map("resume_skill_groups")
 }
@@ -76,13 +78,23 @@ model ContactMessage {
 }
 
 model ResumeMeta {
-  id          String @id @default("default")
-  summaryFa   String @map("summary_fa") @db.Text
-  summaryEn   String @map("summary_en") @db.Text
-  headlineFa  String @map("headline_fa")
-  headlineEn  String @map("headline_en")
-  locationFa  String @map("location_fa")
-  locationEn  String @map("location_en")
+  id         String @id @default("default")
+  summaryFa  String @map("summary_fa") @db.Text
+  summaryEn  String @map("summary_en") @db.Text
+  headlineFa String @map("headline_fa")
+  headlineEn String @map("headline_en")
+  locationFa String @map("location_fa")
+  locationEn String @map("location_en")
 
   @@map("resume_meta")
+}
+
+model SiteContent {
+  id           String @id @default("default")
+  hero         Json
+  about        Json
+  learningPath Json   @map("learning_path")
+  stats        Json
+
+  @@map("site_content")
 }

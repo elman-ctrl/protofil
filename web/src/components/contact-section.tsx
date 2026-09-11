@@ -83,9 +83,9 @@ export function ContactSection() {
             {
               icoFa: 'رزومه',
               icoEn: 'Resume',
-              valFa: 'دانلود PDF',
-              valEn: 'Download PDF',
-              href: '/elman-fotouhi-resume.pdf',
+              valFa: 'نسخه قابل چاپ',
+              valEn: 'Printable version',
+              href: '/resume',
               subFa: 'خلاصه یک‌صفحه‌ای مهارت‌ها',
               subEn: 'One-page skills summary',
             },

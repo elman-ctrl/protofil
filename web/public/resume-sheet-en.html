@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <title>Elman Fotouhi — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: A4; margin: 8mm; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #fff; color: #11211d; font-family: Vazirmatn, sans-serif; }
+    .cv { width: 194mm; border: 0; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 18px;
+      padding: 18px 20px 16px;
+      background: linear-gradient(160deg, #081c19 0%, #0f2c28 58%, #163b35 100%);
+      color: #eef3f0;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    h1 { margin: 0; font-size: 28px; font-weight: 800; color: #f7f4ee; line-height: 1.15; }
+    .role { margin: 6px 0 0; font-size: 14.5px; font-weight: 600; color: #d68a4e; }
+    .focus { margin: 6px 0 0; font-size: 11px; color: #b7c9c1; }
+    .contacts { list-style: none; margin: 0; padding: 4px 0 0; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+    .contacts .lbl { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #d68a4e; margin-bottom: 1px; }
+    .contacts li { font-size: 12px; color: #dce7e2; line-height: 1.4; }
+    .grid { display: grid; grid-template-columns: 0.86fr 1.4fr; }
+    .side { background: #f4f7f4; border-right: 1px solid #dce5df; padding: 16px 15px 18px; }
+    .main { padding: 16px 18px 18px; }
+    h2 { margin: 0 0 8px; font-size: 11.5px; font-weight: 800; color: #0f2c28; display: flex; align-items: center; gap: 6px; }
+    h2::before { content: ""; width: 7px; height: 7px; background: #bc7139; }
+    .side section + section, .main section + section { margin-top: 14px; padding-top: 13px; border-top: 1px solid #dce5df; }
+    .skill + .skill { margin-top: 10px; }
+    .skill h3 { margin: 0 0 2px; font-size: 11.5px; font-weight: 800; color: #163b35; }
+    .skill p { margin: 0; font-size: 10.5px; line-height: 1.7; color: #4a5c56; }
+    .langs { list-style: none; margin: 0; padding: 0; }
+    .langs li { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; padding: 4px 0; border-bottom: 1px dashed #d5dfd9; }
+    .langs li:last-child { border-bottom: 0; }
+    .langs strong { color: #11211d; }
+    .langs em { font-style: normal; color: #bc7139; font-size: 11px; font-weight: 700; }
+    .lead { margin: 0; font-size: 12.2px; line-height: 1.8; color: #4a5c56; }
+    .meta { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+    .dates {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #fff;
+      background: #163b35;
+      padding: 2px 7px;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    .place { font-size: 11px; font-weight: 700; color: #bc7139; }
+    .main h3 { margin: 0; font-size: 14px; font-weight: 800; color: #0f2c28; }
+    .company { margin: 2px 0 7px; font-size: 12px; color: #4a5c56; }
+    .main ul { margin: 0; padding-inline-start: 15px; color: #4a5c56; font-size: 12px; line-height: 1.7; }
+    .main li + li { margin-top: 3px; }
+    .stack { margin: 8px 0 0; font-size: 10.5px; font-weight: 600; line-height: 1.65; color: #163b35; }
+  </style>
+</head>
+<body>
+  <article class="cv">
+    <header class="hero">
+      <div>
+        <h1>Elman Fotouhi</h1>
+        <p class="role">Network &amp; MikroTik Intern</p>
+        <p class="focus">Tunnels &amp; VPN · Routing · Firewall · Linux</p>
+      </div>
+      <ul class="contacts">
+        <li><span class="lbl">Location</span>Tabriz, East Azerbaijan</li>
+        <li><span class="lbl">Phone</span>0914-815-0089</li>
+        <li><span class="lbl">Email</span>Elmanfotouhi@gmail.com</li>
+      </ul>
+    </header>
+    <div class="grid">
+      <aside class="side">
+        <section>
+          <h2>Skills</h2>
+          <div class="skill">
+            <h3>Tunnels &amp; VPN</h3>
+            <p>GRE · EoIP · IPsec · WireGuard · OpenVPN · L2TP/IPsec · PPTP · SSTP · Multi-stage tunnel chaining</p>
+          </div>
+          <div class="skill">
+            <h3>Routing &amp; Firewall</h3>
+            <p>Policy Routing · Load Balancing (PCC) · Failover · NAT · Hairpin NAT · Port Forwarding</p>
+          </div>
+          <div class="skill">
+            <h3>Resilience &amp; Monitoring</h3>
+            <p>Netwatch · SNMP · iperf · Automated backup · Disaster Recovery · MikroTik API</p>
+          </div>
+          <div class="skill">
+            <h3>Tools</h3>
+            <p>Winbox · Claude · Cursor · Technical documentation</p>
+          </div>
+        </section>
+        <section>
+          <h2>Languages</h2>
+          <ul class="langs">
+            <li><strong>Persian</strong><em>Native</em></li>
+            <li><strong>Azerbaijani</strong><em>Native</em></li>
+            <li><strong>Turkish</strong><em>Professional</em></li>
+            <li><strong>English</strong><em>Intermediate</em></li>
+          </ul>
+        </section>
+      </aside>
+      <div class="main">
+        <section>
+          <h2>Objective</h2>
+          <p class="lead">Networking intern with hands-on MikroTik, Linux, and AI-assisted development experience. Skilled at comparing tunnel architectures, automating routing and firewall work, and writing clear technical docs. Seeking a full-time Network Security Engineering / DevOps path toward Forward Deployed Engineer.</p>
+        </section>
+        <section>
+          <h2>Experience</h2>
+          <div class="meta">
+            <span class="dates">Jun 2026 – Sep 2026</span>
+            <span class="place">Tabriz</span>
+          </div>
+          <h3>Network &amp; MikroTik Intern</h3>
+          <p class="company">Dina Cloud Computing (Dinalabs)</p>
+          <ul>
+            <li>Designed, implemented, and compared GRE, EoIP, IPsec, WireGuard, OpenVPN, L2TP/IPsec, PPTP, and SSTP tunnels for secure site-to-site links.</li>
+            <li>Implemented Policy Routing, PCC load balancing, and automatic failover for multi-link stability.</li>
+            <li>Hardened the network edge with firewall, NAT, Hairpin NAT, and port forwarding; validated with Netwatch, SNMP, and iperf.</li>
+            <li>Automated backups and disaster recovery through the MikroTik API.</li>
+            <li>Helped design and launch Dina Rental with AI-assisted development and supporting technical documentation.</li>
+          </ul>
+          <p class="stack">GRE · EoIP · IPsec · WireGuard · OpenVPN · L2TP/IPsec · PCC · NAT · Netwatch · MikroTik API</p>
+        </section>
+        <section>
+          <h2>Education</h2>
+          <h3>B.Sc. Computer Engineering</h3>
+          <p class="company">Islamic Azad University, Tabriz Branch — Semester 3</p>
+        </section>
+        <section>
+          <h2>Strengths</h2>
+          <p class="lead">Hands-on fluency with Claude, Cursor, and Winbox to speed up network configuration, task research, and documentation.</p>
+        </section>
+      </div>
+    </div>
+  </article>
+</body>
+</html>

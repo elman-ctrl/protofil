@@ -16,95 +16,75 @@ async function main() {
     data: {
       id: 'default',
       summaryFa:
-        'مهندس شبکه که از طریق ساخت زیرساخت واقعی یاد می‌گیرد. تمرکز روی MikroTik، Linux server administration و DevOps tooling.',
+        'کارآموز باانگیزه در حوزه شبکه با تجربه عملی در مدیریت میکروتیک، سیستم‌های لینوکس و فرایندهای توسعه مبتنی بر هوش مصنوعی. توانمند در راه‌اندازی و مقایسه معماری‌های تونل‌زنی، اتوماسیون تنظیمات روتینگ و فایروال، و تهیه مستندات فنی روشن.',
       summaryEn:
-        'Network engineer who learns by building real infrastructure. Focus on MikroTik, Linux server administration, and DevOps tooling.',
-      headlineFa: 'المان فتوحی',
-      headlineEn: 'Elman Fotouhi',
-      locationFa: 'مهندسی شبکه · DevOps · تبریز',
-      locationEn: 'Network Engineering · DevOps · Tabriz',
+        'Motivated networking intern with hands-on experience in MikroTik administration, Linux systems, and AI-assisted development. Skilled at deploying and comparing tunneling architectures, automating routing and firewall configuration, and writing clear technical documentation.',
+      headlineFa: 'المان فتوحی — کارآموز شبکه و میکروتیک',
+      headlineEn: 'Elman Fotouhi — Network & MikroTik Intern',
+      locationFa: 'تبریز، آذربایجان شرقی',
+      locationEn: 'Tabriz, East Azerbaijan',
     },
   });
 
   await prisma.resumeExperience.create({
     data: {
-      titleFa: 'فریلنسر مستقل — زیرساخت و DevOps',
-      titleEn: 'Independent Freelancer — Infrastructure & DevOps',
+      titleFa: 'کارآموز شبکه و میکروتیک — رایانش ابری دینا (Dinalabs)',
+      titleEn: 'Network & MikroTik Intern — Dina Cloud Computing (Dinalabs)',
       descriptionFa:
-        'ساخت و دیپلوی زیرساخت خوداستقرار (self-hosted) روی VPS برای پروژه‌های شخصی و مشتریان.',
+        'خرداد ۱۴۰۵ – شهریور ۱۴۰۵. طراحی و مقایسه تونل‌های GRE، EoIP، IPsec، WireGuard، OpenVPN و L2TP/IPsec؛ پیاده‌سازی Policy Routing، PCC و Failover؛ ایمن‌سازی فایروال و NAT؛ اتوماسیون بکاپ از طریق API میکروتیک؛ مشارکت در پروژه دینا رنتال.',
       descriptionEn:
-        'Building and deploying self-hosted infrastructure on VPS for personal and client projects.',
+        'Jun 2026 – Sep 2026. Designed and compared GRE, EoIP, IPsec, WireGuard, OpenVPN and L2TP/IPsec tunnels; implemented Policy Routing, PCC and failover; hardened firewall and NAT; automated backups via MikroTik API; contributed to Dina Rental.',
       order: 1,
     },
   });
 
   const skillGroups = [
     {
-      categoryNameFa: 'شبکه و MikroTik',
-      categoryNameEn: 'Networking & MikroTik',
+      categoryNameFa: 'تونل و VPN',
+      categoryNameEn: 'Tunnels & VPN',
       skills: [
-        'MikroTik RouterOS / CHR',
-        'L2TP Failover Routing',
+        'GRE',
+        'EoIP',
+        'IPsec',
         'WireGuard',
-        'GRE (Nested)',
-        'Policy-Based Routing',
-        'OpenVPN + RADIUS',
+        'OpenVPN',
+        'L2TP/IPsec',
+        'PPTP',
+        'SSTP',
       ],
       order: 1,
     },
     {
-      categoryNameFa: 'Docker',
-      categoryNameEn: 'Docker',
+      categoryNameFa: 'روتینگ و فایروال',
+      categoryNameEn: 'Routing & Firewall',
       skills: [
-        'Docker & Docker Compose',
-        'Multi-stage Builds',
-        'Coolify Deployment',
-        'Multi-service Containerization',
+        'Policy Routing',
+        'Load Balancing (PCC)',
+        'Failover',
+        'NAT',
+        'Hairpin NAT',
+        'Port Forwarding',
       ],
       order: 2,
     },
     {
-      categoryNameFa: 'سرور و لینوکس',
-      categoryNameEn: 'Servers & Linux',
+      categoryNameFa: 'مانیتورینگ و پایداری',
+      categoryNameEn: 'Monitoring & Resilience',
       skills: [
-        'Ubuntu 24 Admin',
-        'Postfix / Dovecot',
-        'OpenDKIM / SpamAssassin',
-        'Fail2Ban / MariaDB',
+        'Netwatch',
+        'SNMP',
+        'iperf',
+        'بکاپ خودکار',
+        'Disaster Recovery',
+        'MikroTik API',
       ],
       order: 3,
     },
     {
-      categoryNameFa: 'CI/CD و اتوماسیون',
-      categoryNameEn: 'CI/CD & Automation',
-      skills: [
-        'GitHub Actions',
-        'Automated SSH Deploy',
-        'Git',
-        'Prometheus / Grafana',
-      ],
+      categoryNameFa: 'ابزارها',
+      categoryNameEn: 'Tools',
+      skills: ['Winbox', 'Claude', 'Cursor', 'مستندسازی فنی'],
       order: 4,
-    },
-    {
-      categoryNameFa: 'ردیابی خطا و نوتیفیکیشن',
-      categoryNameEn: 'Error Tracking & Alerting',
-      skills: [
-        'n8n Workflow Automation',
-        'Bugsink',
-        'ntfy',
-        'REST API Integration',
-      ],
-      order: 5,
-    },
-    {
-      categoryNameFa: 'ابزارهای تکمیلی',
-      categoryNameEn: 'Additional Tools',
-      skills: [
-        'Cloudflare DNS',
-        'Python Automation',
-        'Technical Docs (EN/FA)',
-      ],
-      order: 6,
     },
   ];
 

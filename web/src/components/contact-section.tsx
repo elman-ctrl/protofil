@@ -83,11 +83,11 @@ export function ContactSection() {
             {
               icoFa: 'رزومه',
               icoEn: 'Resume',
-              valFa: 'نسخه قابل چاپ',
-              valEn: 'Printable version',
-              href: '/resume',
-              subFa: 'خلاصه یک‌صفحه‌ای مهارت‌ها',
-              subEn: 'One-page skills summary',
+              valFa: 'دانلود PDF',
+              valEn: 'Download PDF',
+              href: '/elman-fotouhi-resume.pdf',
+              subFa: 'نسخه بازطراحی‌شده با فونت وزیرمتن',
+              subEn: 'Redesigned version in Vazirmatn',
             },
           ].map((card) => (
             <a
@@ -95,6 +95,7 @@ export function ContactSection() {
               href={card.href}
               target={card.href.startsWith('http') ? '_blank' : undefined}
               rel={card.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              download={card.href.endsWith('.pdf') ? true : undefined}
               className="flex flex-col gap-2 border border-white/15 p-5 transition hover:-translate-y-0.5 hover:border-copper-bright hover:bg-white/5"
             >
               <span className="mono text-[11px] uppercase tracking-wide text-gold">

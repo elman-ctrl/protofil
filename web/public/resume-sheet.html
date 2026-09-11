@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <title>رزومه المان فتوحی</title>
+  <style>
+    @font-face { font-family: Vazirmatn; src: url("fonts/Vazirmatn-Regular.ttf") format("truetype"); font-weight: 400; }
+    @font-face { font-family: Vazirmatn; src: url("fonts/Vazirmatn-Medium.ttf") format("truetype"); font-weight: 500; }
+    @font-face { font-family: Vazirmatn; src: url("fonts/Vazirmatn-Bold.ttf") format("truetype"); font-weight: 700; }
+    @font-face { font-family: Vazirmatn; src: url("fonts/Vazirmatn-ExtraBold.ttf") format("truetype"); font-weight: 800; }
+    @page { size: A4; margin: 8mm; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #fff; color: #11211d; font-family: Vazirmatn, sans-serif; }
+    .ltr { unicode-bidi: isolate; direction: ltr; }
+    .cv { width: 194mm; border: 0; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 18px;
+      padding: 18px 20px 16px;
+      background: linear-gradient(160deg, #081c19 0%, #0f2c28 58%, #163b35 100%);
+      color: #eef3f0;
+    }
+    h1 { margin: 0; font-size: 28px; font-weight: 800; color: #f7f4ee; line-height: 1.15; }
+    .role { margin: 6px 0 0; font-size: 14.5px; font-weight: 600; color: #d68a4e; }
+    .focus { margin: 6px 0 0; font-size: 11px; color: #b7c9c1; }
+    .contacts { list-style: none; margin: 0; padding: 4px 0 0; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+    .contacts .lbl { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; color: #d68a4e; margin-bottom: 1px; }
+    .contacts li { font-size: 12px; color: #dce7e2; line-height: 1.4; }
+    .grid { display: grid; grid-template-columns: 0.86fr 1.4fr; }
+    .side { background: #f4f7f4; border-left: 1px solid #dce5df; padding: 16px 15px 18px; }
+    .main { padding: 16px 18px 18px; }
+    h2 { margin: 0 0 8px; font-size: 11.5px; font-weight: 800; color: #0f2c28; display: flex; align-items: center; gap: 6px; }
+    h2::before { content: ""; width: 7px; height: 7px; background: #bc7139; }
+    .side section + section, .main section + section { margin-top: 14px; padding-top: 13px; border-top: 1px solid #dce5df; }
+    .skill + .skill { margin-top: 10px; }
+    .skill h3 { margin: 0 0 2px; font-size: 11.5px; font-weight: 800; color: #163b35; }
+    .skill p { margin: 0; font-size: 10.5px; line-height: 1.7; color: #4a5c56; }
+    .langs { list-style: none; margin: 0; padding: 0; }
+    .langs li { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; padding: 4px 0; border-bottom: 1px dashed #d5dfd9; }
+    .langs li:last-child { border-bottom: 0; }
+    .langs strong { color: #11211d; }
+    .langs em { font-style: normal; color: #bc7139; font-size: 11px; font-weight: 700; }
+    .lead { margin: 0; font-size: 12.2px; line-height: 1.8; color: #4a5c56; }
+    .meta { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+    .dates { font-size: 10.5px; font-weight: 700; color: #fff; background: #163b35; padding: 2px 7px; }
+    .place { font-size: 11px; font-weight: 700; color: #bc7139; }
+    .main h3 { margin: 0; font-size: 14px; font-weight: 800; color: #0f2c28; }
+    .company { margin: 2px 0 7px; font-size: 12px; color: #4a5c56; }
+    .main ul { margin: 0; padding-inline-start: 15px; color: #4a5c56; font-size: 12px; line-height: 1.7; }
+    .main li + li { margin-top: 3px; }
+    .stack { margin: 8px 0 0; font-size: 10.5px; font-weight: 600; line-height: 1.65; color: #163b35; direction: ltr; text-align: right; unicode-bidi: isolate; }
+  </style>
+</head>
+<body>
+  <article class="cv">
+    <header class="hero">
+      <div>
+        <h1>المان فتوحی</h1>
+        <p class="role">کارآموز شبکه و میکروتیک</p>
+        <p class="focus">تونل و <span class="ltr">VPN</span> · روتینگ · فایروال · لینوکس&#x200F;</p>
+      </div>
+      <ul class="contacts">
+        <li><span class="lbl">موقعیت</span>تبریز، آذربایجان شرقی</li>
+        <li><span class="lbl">تلفن</span><span class="ltr">0914-815-0089</span></li>
+        <li><span class="lbl">ایمیل</span><span class="ltr">Elmanfotouhi@gmail.com</span></li>
+      </ul>
+    </header>
+    <div class="grid">
+      <aside class="side">
+        <section>
+          <h2>مهارت‌ها</h2>
+          <div class="skill">
+            <h3>تونل و VPN</h3>
+            <p><span class="ltr">GRE · EoIP · IPsec · WireGuard · OpenVPN · L2TP/IPsec · PPTP · SSTP</span> · زنجیره تونل چندمرحله‌ای&#x200F;</p>
+          </div>
+          <div class="skill">
+            <h3>روتینگ و فایروال</h3>
+            <p><span class="ltr">Policy Routing · Load Balancing (PCC) · Failover · NAT · Hairpin NAT · Port Forwarding</span>&#x200F;</p>
+          </div>
+          <div class="skill">
+            <h3>پایداری و مانیتورینگ</h3>
+            <p><span class="ltr">Netwatch · SNMP · iperf · Disaster Recovery · MikroTik API</span> · بکاپ خودکار&#x200F;</p>
+          </div>
+          <div class="skill">
+            <h3>ابزارها</h3>
+            <p><span class="ltr">Winbox · Claude · Cursor</span> · مستندسازی فنی&#x200F;</p>
+          </div>
+        </section>
+        <section>
+          <h2>زبان‌ها</h2>
+          <ul class="langs">
+            <li><strong>فارسی</strong><em>مادری</em></li>
+            <li><strong>ترکی آذربایجانی</strong><em>مادری</em></li>
+            <li><strong>ترکی استانبولی</strong><em>حرفه‌ای</em></li>
+            <li><strong>انگلیسی</strong><em>متوسط</em></li>
+          </ul>
+        </section>
+      </aside>
+      <div class="main">
+        <section>
+          <h2>هدف شغلی</h2>
+          <p class="lead">کارآموز شبکه با تجربه عملی در میکروتیک، لینوکس و توسعه مبتنی بر هوش مصنوعی. توانمند در راه‌اندازی معماری تونل، اتوماسیون روتینگ و فایروال، و نوشتن مستندات فنی روشن. به دنبال نقش تمام‌وقت در امنیت شبکه و دواپس هستم.</p>
+        </section>
+        <section>
+          <h2>سوابق کاری</h2>
+          <div class="meta">
+            <span class="dates">خرداد ۱۴۰۵ – شهریور ۱۴۰۵</span>
+            <span class="place">تبریز</span>
+          </div>
+          <h3>کارآموز شبکه و میکروتیک</h3>
+          <p class="company">رایانش ابری دینا (<span class="ltr">Dinalabs</span>)</p>
+          <ul>
+            <li>طراحی، پیاده‌سازی و مقایسه فناوری‌های تونل برای ارتباط امن بین‌سایتی.</li>
+            <li>پیاده‌سازی روتینگ سیاست‌محور، توزیع بار و جابه‌جایی خودکار لینک برای پایداری چندلینکه.</li>
+            <li>ایمن‌سازی مرز شبکه با فایروال و ترجمه آدرس، سپس اعتبارسنجی عملکرد.</li>
+            <li>اتوماسیون بکاپ و بازیابی از طریق <span class="ltr">API</span> میکروتیک.&#x200F;</li>
+            <li>مشارکت در طراحی و راه‌اندازی پروژه دینا رنتال با ابزارهای هوش مصنوعی و تهیه مستندات فنی.</li>
+          </ul>
+          <p class="stack">GRE · EoIP · IPsec · WireGuard · OpenVPN · L2TP/IPsec · PCC · NAT · Netwatch · MikroTik API</p>
+        </section>
+        <section>
+          <h2>تحصیلات</h2>
+          <h3>کارشناسی مهندسی کامپیوتر</h3>
+          <p class="company">دانشگاه آزاد اسلامی واحد تبریز — ترم ۳</p>
+        </section>
+        <section>
+          <h2>نقاط قوت</h2>
+          <p class="lead">تسلط عملی روی <span class="ltr">Winbox</span> و ابزارهای هوش مصنوعی برای تسریع پیکربندی شبکه، تحقیق تسک‌ها و مستندسازی.&#x200F;</p>
+        </section>
+      </div>
+    </div>
+  </article>
+</body>
+</html>

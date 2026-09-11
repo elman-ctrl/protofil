@@ -9,7 +9,6 @@ import { ResumeSection } from '@/components/resume-section';
 import { SkillsSection } from '@/components/skills-section';
 import {
   getProjects,
-  getResume,
   getSiteContent,
   getSkillCategories,
 } from '@/lib/api';
@@ -18,10 +17,9 @@ import type { SiteAbout, SiteHero, SitePathHop, SiteStat } from '@/lib/types';
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [projects, skillCategories, resume, site] = await Promise.all([
+  const [projects, skillCategories, site] = await Promise.all([
     getProjects(),
     getSkillCategories(),
-    getResume(),
     getSiteContent(),
   ]);
 
@@ -39,7 +37,7 @@ export default async function HomePage() {
         <AboutSection about={about} />
         <SkillsSection categories={skillCategories} />
         <ProjectsSection projects={projects} />
-        <ResumeSection resume={resume} />
+        <ResumeSection />
         <GithubSection />
         <ContactSection />
       </main>

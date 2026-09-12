@@ -106,9 +106,11 @@ docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
 
 ## Coolify
 
-Coolify must use the **Docker Compose** build pack, not Railpack/Nixpacks. This repo is three services (Postgres + Nest API + Next.js); Railpack builds a single Node image and fails `npm ci` because Node 22 ships npm 10 while `package.json` requires npm 11.
+Coolify must use the **Docker Compose** build pack, not Railpack/Nixpacks. This repo is three services (Postgres + Nest API + Next.js). Railpack builds one Node image and cannot run the stack.
 
-1. In the Coolify application: **Build Pack → Docker Compose**
+If the existing resource was created as a Railpack/Nixpacks Application, Coolify often cannot switch build packs in place — delete it and create a new resource from Git with Docker Compose.
+
+1. New resource → Git repository → **Docker Compose** (not Application / Railpack)
 2. Base Directory: `/`
 3. Docker Compose Location: `/docker-compose.yml`
 4. Assign domains (include the container port in the Coolify domain field):

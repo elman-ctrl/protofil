@@ -18,7 +18,9 @@ services:
       retries: 10
 
   api:
-    build: ./api
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
     container_name: elman-api
     restart: unless-stopped
     environment:
@@ -34,7 +36,8 @@ services:
 
   web:
     build:
-      context: ./web
+      context: .
+      dockerfile: apps/web/Dockerfile
       args:
         API_URL: http://api:3001
     container_name: elman-web

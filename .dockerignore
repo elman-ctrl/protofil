@@ -1,0 +1,17 @@
+.git
+.gitignore
+.turbo
+**/.turbo
+**/node_modules
+**/.next
+**/dist
+**/coverage
+**/.env
+**/.env.local
+**/*.log
+**/.DS_Store
+README.md
+apps/*/README.md
+elman-fotouhi-resume.pdf
+elman-portfolio (3).html
+index.html

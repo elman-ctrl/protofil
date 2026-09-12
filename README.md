@@ -1,12 +1,13 @@
 # Elman Portfolio — Full Stack
 
-پورتفولیوی دوزبانه (FA/EN) با معماری جداگانهٔ فرانت و بک.
+پورتفولیوی دوزبانه (FA/EN) با معماری جداگانهٔ فرانت و بک، در یک Turborepo monorepo.
 
 ## Stack
 
 | Layer | Tech |
 |-------|------|
-| Frontend | Next.js 15 (App Router) + TypeScript + Tailwind CSS |
+| Monorepo | Turborepo + npm workspaces |
+| Frontend | Next.js 15 (App Router, Turbopack) + TypeScript + Tailwind CSS |
 | Backend | NestJS REST API + TypeScript |
 | Database | PostgreSQL + Prisma |
 
@@ -15,33 +16,53 @@
 ## ساختار
 
 ```
-api/     NestJS + Prisma
-web/     Next.js portfolio UI
-docker-compose.yml   PostgreSQL
+apps/api     NestJS + Prisma
+apps/web     Next.js portfolio UI
+packages/    shared libraries (ready for future packages)
+turbo.json   Turborepo task pipeline
+docker-compose.yml   PostgreSQL (+ optional production images)
 ```
 
 ## راه‌اندازی
 
+از ریشهٔ ریپو:
+
+```bash
+npm install
+```
+
 ### 1) دیتابیس
 
 ```bash
-docker compose up -d
+npm run db:up
 ```
 
 Postgres روی پورت `5433` بالا می‌آید (`elman` / `elman` / `portfolio`).
 
-### 2) API
-
 ```bash
-cd api
-cp .env.example .env
-npm install
-npx prisma migrate dev
-npx prisma db seed
-npm run start:dev
+cp apps/api/.env.example apps/api/.env
+cp apps/web/.env.example apps/web/.env.local
+npm run db:migrate
+npm run db:seed
 ```
 
-API: http://localhost:3001
+### 2) توسعه
+
+هر دو اپ را با یک دستور بالا بیاورید:
+
+```bash
+npm run dev
+```
+
+- Web: http://localhost:3000
+- API: http://localhost:3001
+
+فقط یکی از اپ‌ها:
+
+```bash
+npx turbo run dev --filter=web
+npx turbo run dev --filter=api
+```
 
 اندپوینت‌ها:
 - `GET /projects`
@@ -50,16 +71,14 @@ API: http://localhost:3001
 - `POST /contact`
 - `POST|PATCH|DELETE /admin/projects` (هدر `x-admin-token`)
 
-### 3) Web
+سایر اسکریپت‌های ریشه:
 
 ```bash
-cd web
-cp .env.example .env.local
-npm install
-npm run dev
+npm run build
+npm run lint
+npm run test
+npm run check-types
 ```
-
-سایت: http://localhost:3000
 
 ## Production (Docker)
 

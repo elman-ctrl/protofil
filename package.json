@@ -2,11 +2,29 @@
   "name": "elman-portfolio",
   "private": true,
   "scripts": {
-    "db:up": "docker compose up -d",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "check-types": "turbo run check-types",
+    "db:up": "docker compose up -d db",
     "db:down": "docker compose down",
-    "api:dev": "npm --prefix api run start:dev",
-    "web:dev": "npm --prefix web run dev",
-    "api:seed": "npm --prefix api run prisma:seed",
-    "dev": "echo Run in two terminals: npm run api:dev  and  npm run web:dev"
-  }
+    "db:migrate": "npm run prisma:migrate -w api",
+    "db:seed": "npm run prisma:seed -w api",
+    "db:generate": "npm run prisma:generate -w api"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.8"
+  },
+  "packageManager": "npm@11.16.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "version": ">=11"
+    }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

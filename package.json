@@ -11,7 +11,10 @@
     "db:down": "docker compose down",
     "db:migrate": "npm run prisma:migrate -w api",
     "db:seed": "npm run prisma:seed -w api",
-    "db:generate": "npm run prisma:generate -w api"
+    "db:generate": "npm run prisma:generate -w api",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
   },
   "devDependencies": {
     "turbo": "^2.5.8"

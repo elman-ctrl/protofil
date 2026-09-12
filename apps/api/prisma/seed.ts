@@ -3,6 +3,16 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  const alreadySeeded = await prisma.siteContent.findUnique({
+    where: { id: 'default' },
+  });
+  if (alreadySeeded && process.env.FORCE_SEED !== 'true') {
+    console.log(
+      'Database already seeded; skipping. Set FORCE_SEED=true to reseed.',
+    );
+    return;
+  }
+
   await prisma.skill.deleteMany();
   await prisma.skillCategory.deleteMany();
   await prisma.project.deleteMany();

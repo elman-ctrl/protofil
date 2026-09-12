@@ -82,14 +82,27 @@ npm run check-types
 
 ## Production (Docker)
 
+کل استک (Postgres + API + Web) با یک دستور بالا می‌آید:
+
+```bash
+npm run docker:up
+```
+
+یا:
+
 ```bash
 docker compose up -d --build
 ```
 
 - Web: http://localhost:3000
 - API: http://localhost:3001
-- Admin UI: http://localhost:3000/admin (token از `ADMIN_TOKEN`)
+- Admin UI: http://localhost:3000/admin (token از `ADMIN_TOKEN`، پیش‌فرض `elman-admin-dev-token`)
 - Printable resume: http://localhost:3000/resume
+
+لاگ‌ها: `npm run docker:logs`  
+توقف: `npm run docker:down`
+
+مایگریشن و seed هنگام استارت API اجرا می‌شوند. برای seed دوباره، `FORCE_SEED=true` را روی سرویس `api` بگذارید.
 
 ## Admin API
 

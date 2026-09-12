@@ -10,8 +10,9 @@
 **/.env.local
 **/*.log
 **/.DS_Store
-README.md
-apps/*/README.md
 elman-fotouhi-resume.pdf
 elman-portfolio (3).html
 index.html
+**/*.md
+!package.json
+!apps/*/package.json

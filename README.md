@@ -91,7 +91,7 @@ npm run docker:up
 یا:
 
 ```bash
-docker compose up -d --build
+docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
 ```
 
 - Web: http://localhost:3000
@@ -103,6 +103,21 @@ docker compose up -d --build
 توقف: `npm run docker:down`
 
 مایگریشن و seed هنگام استارت API اجرا می‌شوند. برای seed دوباره، `FORCE_SEED=true` را روی سرویس `api` بگذارید.
+
+## Coolify
+
+Coolify must use the **Docker Compose** build pack, not Railpack/Nixpacks. This repo is three services (Postgres + Nest API + Next.js); Railpack builds a single Node image and fails `npm ci` because Node 22 ships npm 10 while `package.json` requires npm 11.
+
+1. In the Coolify application: **Build Pack → Docker Compose**
+2. Base Directory: `/`
+3. Docker Compose Location: `/docker-compose.yml`
+4. Assign domains (include the container port in the Coolify domain field):
+   - `web`: `https://your-domain:3000`
+   - `api`: `https://api.your-domain:3001`
+5. Set `ADMIN_TOKEN` (and optionally `FRONTEND_ORIGIN` / `NEXT_PUBLIC_API_URL` if the generated URLs are wrong)
+6. Deploy
+
+Do not publish host `ports` for these services on Coolify; the proxy routes by domain.
 
 ## Admin API
 

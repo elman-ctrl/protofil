@@ -1,0 +1,27 @@
+# Local Docker only. Coolify deploys docker-compose.yml by itself.
+services:
+  db:
+    container_name: elman-postgres
+    ports:
+      - "5433:5432"
+
+  api:
+    container_name: elman-api
+    environment:
+      DATABASE_URL: postgresql://elman:elman@db:5432/portfolio?schema=public
+      FRONTEND_ORIGIN: http://localhost:3000
+      ADMIN_TOKEN: elman-admin-dev-token
+    ports:
+      - "3001:3001"
+
+  web:
+    container_name: elman-web
+    build:
+      args:
+        API_URL: http://api:3001
+        NEXT_PUBLIC_API_URL: http://localhost:3001
+    environment:
+      API_URL: http://api:3001
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    ports:
+      - "3000:3000"

@@ -5,10 +5,12 @@ import type {
   SkillCategory,
 } from './types';
 
-const API_URL =
-  process.env.API_URL ??
-  process.env.NEXT_PUBLIC_API_URL ??
-  'http://localhost:3001';
+function envUrl(...values: Array<string | undefined>) {
+  const value = values.find((item) => item && item.length > 0);
+  return (value ?? 'http://localhost:3001').replace(/\/$/, '');
+}
+
+const API_URL = envUrl(process.env.API_URL, process.env.NEXT_PUBLIC_API_URL);
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
@@ -57,9 +59,5 @@ export function getSiteContent() {
 }
 
 export function getApiBase() {
-  return (
-    process.env.NEXT_PUBLIC_API_URL ??
-    process.env.API_URL ??
-    'http://localhost:3001'
-  );
+  return envUrl(process.env.NEXT_PUBLIC_API_URL, process.env.API_URL);
 }

@@ -7,14 +7,14 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "check-types": "turbo run check-types",
-    "db:up": "docker compose up -d db",
-    "db:down": "docker compose down",
+    "db:up": "docker compose -f docker-compose.yml -f docker-compose.local.yml up -d db",
+    "db:down": "docker compose -f docker-compose.yml -f docker-compose.local.yml down",
     "db:migrate": "npm run prisma:migrate -w api",
     "db:seed": "npm run prisma:seed -w api",
     "db:generate": "npm run prisma:generate -w api",
-    "docker:up": "docker compose up -d --build",
-    "docker:down": "docker compose down",
-    "docker:logs": "docker compose logs -f"
+    "docker:up": "docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build",
+    "docker:down": "docker compose -f docker-compose.yml -f docker-compose.local.yml down",
+    "docker:logs": "docker compose -f docker-compose.yml -f docker-compose.local.yml logs -f"
   },
   "devDependencies": {
     "turbo": "^2.5.8"

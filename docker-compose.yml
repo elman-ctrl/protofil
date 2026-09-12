@@ -1,18 +1,15 @@
 services:
   db:
     image: postgres:16-alpine
-    container_name: elman-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: elman
-      POSTGRES_PASSWORD: elman
-      POSTGRES_DB: portfolio
-    ports:
-      - "5433:5432"
+      POSTGRES_USER: ${SERVICE_USER_POSTGRES:-elman}
+      POSTGRES_PASSWORD: ${SERVICE_PASSWORD_POSTGRES:-elman}
+      POSTGRES_DB: ${POSTGRES_DB:-portfolio}
     volumes:
       - elman_pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U elman -d portfolio"]
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -21,15 +18,16 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
-    container_name: elman-api
     restart: unless-stopped
     environment:
+      SERVICE_URL_API_3001: /
       PORT: 3001
-      DATABASE_URL: postgresql://elman:elman@db:5432/portfolio?schema=public
-      FRONTEND_ORIGIN: http://localhost:3000
-      ADMIN_TOKEN: elman-admin-dev-token
-    ports:
-      - "3001:3001"
+      DATABASE_URL: postgresql://${SERVICE_USER_POSTGRES:-elman}:${SERVICE_PASSWORD_POSTGRES:-elman}@db:5432/${POSTGRES_DB:-portfolio}?schema=public
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-${SERVICE_URL_WEB_3000:-http://localhost:3000}}
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-elman-admin-dev-token}
+      FORCE_SEED: ${FORCE_SEED:-false}
+    expose:
+      - "3001"
     depends_on:
       db:
         condition: service_healthy
@@ -52,16 +50,16 @@ services:
       dockerfile: apps/web/Dockerfile
       args:
         API_URL: http://api:3001
-        NEXT_PUBLIC_API_URL: http://localhost:3001
-    container_name: elman-web
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-${SERVICE_URL_API_3001:-http://localhost:3001}}
     restart: unless-stopped
     environment:
+      SERVICE_URL_WEB_3000: /
       API_URL: http://api:3001
-      NEXT_PUBLIC_API_URL: http://localhost:3001
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-${SERVICE_URL_API_3001:-http://localhost:3001}}
       HOSTNAME: 0.0.0.0
       PORT: 3000
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     depends_on:
       api:
         condition: service_healthy

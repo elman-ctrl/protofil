@@ -51,7 +51,7 @@ export function ResumeDocument() {
             <h2>{t('زبان‌ها', 'Languages')}</h2>
             <ul className="cv__langs">
               {r.languages.map((lang) => (
-                <li key={lang.en}>
+                <li key={lang.nameEn}>
                   <strong>{fa ? lang.nameFa : lang.nameEn}</strong>
                   <span>{fa ? lang.levelFa : lang.levelEn}</span>
                 </li>

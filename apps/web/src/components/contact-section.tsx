@@ -2,10 +2,11 @@
 
 import { FormEvent, useState } from 'react';
 import { getApiBase } from '@/lib/api';
+import { resumePdfHref } from '@/lib/resume-content';
 import { useLang } from './lang-provider';
 
 export function ContactSection() {
-  const { t } = useLang();
+  const { locale, t } = useLang();
   const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle');
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -85,13 +86,13 @@ export function ContactSection() {
               icoEn: 'Resume',
               valFa: 'دانلود PDF',
               valEn: 'Download PDF',
-              href: '/elman-fotouhi-resume.pdf',
+              href: resumePdfHref(locale),
               subFa: 'نسخه بازطراحی‌شده با فونت وزیرمتن',
               subEn: 'Redesigned version in Vazirmatn',
             },
           ].map((card) => (
             <a
-              key={card.href}
+              key={card.icoEn}
               href={card.href}
               target={card.href.startsWith('http') ? '_blank' : undefined}
               rel={card.href.startsWith('http') ? 'noopener noreferrer' : undefined}

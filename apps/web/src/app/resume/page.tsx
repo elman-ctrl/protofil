@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ResumeDocument } from '@/components/resume-document';
-import { resumeDocument } from '@/lib/resume-content';
+import { resumePdfHref } from '@/lib/resume-content';
 import { useLang } from '@/components/lang-provider';
 
 export default function ResumePrintPage() {
@@ -36,7 +36,7 @@ export default function ResumePrintPage() {
             </button>
           </div>
           <a
-            href={resumeDocument.pdfHref}
+            href={resumePdfHref(locale)}
             download
             className="btn chamfer-sm border border-line bg-transparent text-ink hover:border-copper"
           >

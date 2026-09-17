@@ -133,5 +133,10 @@ export const resumeDocument = {
     'تسلط عملی روی Winbox و ابزارهای هوش مصنوعی برای تسریع پیکربندی شبکه، تحقیق تسک‌ها و مستندسازی.',
   strengthEn:
     'Hands-on fluency with Claude, Cursor, and Winbox to speed up network configuration, task research, and documentation.',
-  pdfHref: '/elman-fotouhi-resume.pdf',
+  pdfHrefFa: '/elman-fotouhi-resume.pdf',
+  pdfHrefEn: '/elman-fotouhi-resume-en.pdf',
 } as const;
+
+export function resumePdfHref(locale: 'fa' | 'en') {
+  return locale === 'en' ? resumeDocument.pdfHrefEn : resumeDocument.pdfHrefFa;
+}

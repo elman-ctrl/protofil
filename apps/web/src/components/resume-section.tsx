@@ -1,11 +1,11 @@
 'use client';
 
 import { ResumeDocument } from './resume-document';
-import { resumeDocument } from '@/lib/resume-content';
+import { resumePdfHref } from '@/lib/resume-content';
 import { useLang } from './lang-provider';
 
 export function ResumeSection() {
-  const { t } = useLang();
+  const { locale, t } = useLang();
 
   return (
     <section id="resume" className="section border-t border-line bg-paper-raised">
@@ -25,7 +25,7 @@ export function ResumeSection() {
           </div>
           <div className="flex flex-wrap gap-2">
             <a
-              href={resumeDocument.pdfHref}
+              href={resumePdfHref(locale)}
               download
               className="btn btn-primary chamfer-sm"
             >

@@ -7,6 +7,12 @@ export const resumeDocument = {
   locationEn: 'Tabriz, East Azerbaijan',
   phone: '0914-815-0089',
   email: 'Elmanfotouhi@gmail.com',
+  github: 'https://github.com/elman-ctrl',
+  githubLabel: 'github.com/elman-ctrl',
+  linkedin: 'https://www.linkedin.com/in/elman-fotouhi/',
+  linkedinLabel: 'linkedin.com/in/elman-fotouhi',
+  website: 'https://elman-fotouhi.vercel.app/',
+  websiteLabel: 'elman-fotouhi.vercel.app',
   focusFa: 'تونل و VPN · روتینگ · فایروال · لینوکس',
   focusEn: 'Tunnels & VPN · Routing · Firewall · Linux',
   objectiveFa:

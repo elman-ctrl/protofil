@@ -280,7 +280,7 @@ a {
 
 .cv__hero {
   display: grid;
-  grid-template-columns: 1.35fr 0.9fr;
+  grid-template-columns: 0.95fr 1.25fr;
   gap: 1.5rem;
   padding: 1.6rem 1.7rem 1.35rem;
   background:
@@ -316,10 +316,10 @@ a {
   list-style: none;
   margin: 0;
   padding: 0.15rem 0 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.55rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  gap: 0.45rem 1rem;
 }
 
 .cv__contact-label {
@@ -333,15 +333,17 @@ a {
 }
 
 .cv__contacts li {
-  font-size: 0.84rem;
+  font-size: 0.78rem;
   color: #dce7e2;
   line-height: 1.4;
   text-align: start;
+  min-width: 0;
 }
 
 .cv__contacts a {
   color: #f4f1ea;
   unicode-bidi: isolate;
+  word-break: break-word;
 }
 
 .cv__contacts a:hover {
@@ -517,6 +519,10 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .cv__contacts {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .cv__side {
     border-inline-end: 0;
     border-bottom: 1px solid var(--line);
@@ -555,7 +561,11 @@ a {
   }
 
   .cv__hero {
-    grid-template-columns: 1.35fr 0.9fr;
+    grid-template-columns: 0.95fr 1.25fr;
+  }
+
+  .cv__contacts {
+    grid-template-columns: 1fr 1fr;
   }
 
   .cv__side {

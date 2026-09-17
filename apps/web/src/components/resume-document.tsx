@@ -32,6 +32,24 @@ export function ResumeDocument() {
               {r.email}
             </a>
           </li>
+          <li>
+            <span className="cv__contact-label">{t('گیت‌هاب', 'GitHub')}</span>
+            <a href={r.github} target="_blank" rel="noopener noreferrer" dir="ltr">
+              {r.githubLabel}
+            </a>
+          </li>
+          <li>
+            <span className="cv__contact-label">{t('لینکدین', 'LinkedIn')}</span>
+            <a href={r.linkedin} target="_blank" rel="noopener noreferrer" dir="ltr">
+              {r.linkedinLabel}
+            </a>
+          </li>
+          <li>
+            <span className="cv__contact-label">{t('وب‌سایت', 'Website')}</span>
+            <a href={r.website} target="_blank" rel="noopener noreferrer" dir="ltr">
+              {r.websiteLabel}
+            </a>
+          </li>
         </ul>
       </header>
 
